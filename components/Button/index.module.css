@@ -1,0 +1,26 @@
+.button {
+  padding: 1rem;
+  font-weight: 600;
+  width: 100%;
+  font-size: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--var--secondary);
+  color: inherit;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.button:hover,
+.button:focus {
+  background-color: var(--var--secondary-dark);
+}
+.button:focus {
+  outline-offset: 2px;
+  outline-color: var(--var--secondary-dark);
+  outline-width: 2px;
+}
+
+.button:active {
+  border: 2px solid var(--var--secondary-dark);
+  background-color: var(--var--secondary);
+}

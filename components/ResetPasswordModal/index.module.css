@@ -1,0 +1,17 @@
+.content {
+  text-align: center;
+
+  width: 100%;
+  padding: 20px;
+}
+
+.content button {
+  margin: 10px auto;
+}
+@media (min-width: 700px) {
+  .content {
+    text-align: center;
+    max-width: 500px;
+    padding: 30px;
+  }
+}

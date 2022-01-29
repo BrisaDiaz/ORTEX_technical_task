@@ -1,5 +1,10 @@
 {
-  "name": "login_page",
+  "name": "ortex_technical_task",
+  "version": "1.0.0",
+  "description": "login page for ORTEX.com",
+  "main": "index.js",
+  "author": "Brisa Díaz",
+  "license": "ISC",
   "private": true,
   "scripts": {
     "dev": "next dev",
