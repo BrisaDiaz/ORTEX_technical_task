@@ -172,7 +172,7 @@ export default function useForm({
     e.preventDefault();
     e.stopPropagation();
     let isFormDirty = false;
-    const fields = Object.keys(formState.values);
+    const fields = Object.keys(formState.inputs);
 
     fields.forEach((fieldName) => {
       if (formState.validations[fieldName]) {
