@@ -1,114 +1,227 @@
-import React, { useEffect } from "react";
-
-export default function useForm({
-  validations,
-}: {
-  validations: {
-    [key: string]: {
-      regexp?: { value: RegExp; message: string };
-      required?: string;
-    };
+import React from "react";
+export interface InputValidations {
+  required?: string;
+  pattern?: { value: RegExp; message: string };
+  minLength?: {
+    value: number;
+    message: string;
   };
+  maxLength?: {
+    value: number;
+    message: string;
+  };
+  min?: {
+    value: number;
+    message: string;
+  };
+  max?: {
+    value: number;
+    message: string;
+  };
+}
+export interface FormState {
+  values: { [key: string]: string | string[] | FileList };
+  errors: { [key: string]: string[] };
+  validations: { [key: string]: InputValidations };
+  inputs: { [key: string]: HTMLInputElement };
+}
+export default function useForm({
+  mode,
+  onFieldValidation,
+  onSubmit,
+}: {
+  mode?: "onChange" | "onBlur" | "onSubmit";
+  onFieldValidation?: (input: HTMLInputElement, errors: string[]) => void;
+  onSubmit: (data: { [key: string]: any }) => void;
 }) {
   const [attemptsCount, setAttemtsCount] = React.useState<number>(0);
-  const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
-  const [componets, setComponets] = React.useState<{
-    [key: string]: HTMLInputElement;
-  }>({});
-  const [formState, setFormState] = React.useState<{
-    values: { [key: string]: string };
-  }>({
+
+  const [formState, setFormState] = React.useState<FormState>({
     values: {},
+    validations: {},
+    errors: {},
+    inputs: {},
   });
 
-  const register = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const formRef: React.LegacyRef<HTMLFormElement> = React.useRef(null);
+
+  const setFieldValidations = (
+    fieldName: string,
+    validations?: InputValidations
+  ) => {
+    //// avoid re-render infinite loop.
+    if (
+      validations &&
+      !Object.keys(formState.validations).includes(fieldName)
+    ) {
+      setFormState({
+        ...formState,
+        validations: { ...formState.validations, [fieldName]: validations },
+      });
+    }
+  };
+  const setFieldInput = (fieldName: string) => {
+    //// avoid re-render infinite loop.
+    const input = formRef?.current?.querySelector(
+      `[name="${fieldName}"]`
+    ) as HTMLInputElement;
+
+    if (input && !Object.keys(formState.inputs).includes(fieldName)) {
+      setFormState({
+        ...formState,
+        inputs: { ...formState.inputs, [fieldName]: input },
+      });
+    }
+  };
+  const getFieldInput = (fieldName: string) => {
+    return formState.inputs[fieldName];
+  };
+
+  const setErrors = (errors: { [key: string]: string[] }) => {
+    setFormState({ ...formState, errors });
+  };
+
+  const setValue = (fieldName: string, value: string) => {
     setFormState({
       ...formState,
-      values: { ...formState.values, [e.target.name]: e.target.value },
+      values: {
+        ...formState.values,
+        [fieldName]: typeof value === "string" ? value.trim() : value,
+      },
     });
-    setComponets({ ...componets, [e.target.name]: e.target });
   };
-  const getValue = (fieldName: string) => {
+  const getValue = (fieldName?: string) => {
+    if (!fieldName) return formState.values;
     if (formState.values && fieldName in formState.values)
-      return formState.values[fieldName].trim();
+      return formState.values[fieldName];
     return false;
   };
 
   const setError = (fieldName: string, message: string) => {
-    if (errors[fieldName] === message) return;
+    if (formState.errors[fieldName]?.includes(message)) return;
 
-    if (!componets[fieldName]?.parentNode) return;
-    const parentComponet = componets[fieldName].parentNode;
-    const alert = parentComponet?.querySelector(
-      '[role="alert"]'
-    ) as HTMLParagraphElement;
-    const input = parentComponet?.querySelector("input");
-    if (!alert || !input) return;
-    alert.textContent = message;
-    alert.style.display = "block";
-    input.style.border = "2px solid var(--var--secondary)";
+    formState.errors[fieldName]
+      ? formState.errors[fieldName].push(message)
+      : (formState.errors = {
+          ...formState.errors,
+          [fieldName]: [message],
+        });
 
-    errors[fieldName] = message;
-    setErrors(errors);
+    setErrors(formState.errors);
   };
   const clearError = (fieldName: string) => {
-    if (!errors[fieldName]) return;
+    if (!formState.errors[fieldName]) return;
 
-    if (!componets[fieldName]?.parentNode) return;
-    const parentComponet = componets[fieldName].parentNode;
-    const alert = parentComponet?.querySelector(
-      '[role="alert"]'
-    ) as HTMLParagraphElement;
-    const input = parentComponet?.querySelector("input");
+    delete formState.errors[fieldName];
 
-    if (!alert || !input) return;
-    alert.textContent = "";
-    alert.style.display = "none";
-    input.style.border = "2px solid var(--var--primary)";
+    setErrors(formState.errors);
+  };
+  const validate = (
+    fieldName: string,
+    value: string[] | string | FileList,
+    validations: InputValidations
+  ) => {
+    const fieldErrors: string[] = [];
 
-    delete errors[fieldName];
-
-    setErrors(errors);
+    if (!Boolean(getValue(fieldName)) && Boolean(validations.required)) {
+      setError(fieldName, validations.required as string);
+      fieldErrors.push(validations.required as string);
+    } else if (
+      validations.pattern &&
+      typeof value === "string" &&
+      !validations.pattern?.value.test(value)
+    ) {
+      setError(fieldName, validations.pattern?.message as string);
+      fieldErrors.push(validations.pattern?.message as string);
+    } else if (
+      validations.min &&
+      typeof value === "string" &&
+      parseInt(value) < validations.min.value
+    ) {
+      setError(fieldName, validations.min.message as string);
+      fieldErrors.push(validations.min?.message as string);
+    } else if (
+      validations.max &&
+      typeof value === "string" &&
+      parseInt(value) > validations.max.value
+    ) {
+      setError(fieldName, validations.max.message as string);
+      fieldErrors.push(validations.max?.message as string);
+    } else if (
+      validations.minLength &&
+      value.length > validations.minLength.value
+    ) {
+      setError(fieldName, validations.minLength.message as string);
+      fieldErrors.push(validations.minLength?.message as string);
+    } else if (
+      validations.maxLength &&
+      value.length < validations.maxLength.value
+    ) {
+      setError(fieldName, validations.maxLength.message as string);
+      fieldErrors.push(validations.maxLength?.message as string);
+    } else {
+      clearError(fieldName);
+    }
+    return {
+      errors: fieldErrors,
+      isDirty: fieldErrors.length ? true : false,
+    };
   };
 
-  const handleSumbmit = (
-    e: React.FormEvent<HTMLFormElement>,
-    callback: (data: { [key: string]: string }) => void
-  ) => {
+  const handleSumbmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    let isDirty = false;
+    let isFormDirty = false;
     const fields = Object.keys(formState.values);
 
     fields.forEach((fieldName) => {
-      if (validations[fieldName]) {
-        if (
-          !Boolean(getValue(fieldName)) &&
-          Boolean(validations[fieldName].required)
-        ) {
-          setError(fieldName, validations[fieldName].required as string);
-          isDirty = true;
-        } else if (
-          validations[fieldName].regexp &&
-          !validations[fieldName].regexp?.value.test(
-            formState.values[fieldName]
-          )
-        ) {
-          setError(fieldName, validations[fieldName].regexp?.message as string);
-          isDirty = true;
-        } else {
-          clearError(fieldName);
-        }
+      if (formState.validations[fieldName]) {
+        const { isDirty, errors } = validate(
+          fieldName,
+          formState.values[fieldName],
+          formState.validations[fieldName]
+        );
+        onFieldValidation &&
+          onFieldValidation(getFieldInput(fieldName), errors);
+        if (isDirty) isFormDirty = true;
       }
     });
     setAttemtsCount(attemptsCount + 1);
-    if (!isDirty) return callback(formState.values);
+    if (!isFormDirty) return onSubmit(formState.values);
   };
 
+  function register(fieldName: string, validations?: InputValidations) {
+    setFieldValidations(fieldName, validations);
+    setFieldInput(fieldName);
+    const props = {
+      name: fieldName,
+
+      onChange: function (e: React.ChangeEvent<HTMLInputElement>) {
+        setValue(fieldName, e.target.value);
+
+        if (validations && mode == "onChange") {
+          const { errors } = validate(fieldName, e.target.value, validations);
+          onFieldValidation && onFieldValidation(e.target, errors);
+        }
+      },
+      onBlur: function (e: React.ChangeEvent<HTMLInputElement>) {
+        if (validations && mode == "onBlur") {
+          const { errors } = validate(fieldName, e.target.value, validations);
+
+          onFieldValidation && onFieldValidation(e.target, errors);
+        }
+      },
+    };
+    return props;
+  }
   return {
     setError,
     getValue,
     register,
     handleSumbmit,
+    formRef,
+    attemptsCount,
+    errors: formState.errors,
+    values: formState.values,
   };
 }

@@ -5,45 +5,37 @@ import Image from "next/image";
 import Button from "../Button/index";
 import { EMAIL_PATTERN, PASSWORD_PATTERN } from "@/utils/regex";
 import useForm from "@/hooks/useForm";
-
+import inputStylesController from "@/utils/inputStylesController";
 export default function LoginForm({
   onForgotPassword,
   onSubmit,
 }: {
   onForgotPassword: () => void;
-  onSubmit: (formData: { [key: string]: string }) => void;
+  onSubmit: (formData: { [key: string]: any }) => void;
 }) {
-  const { register, handleSumbmit } = useForm({
-    validations: {
-      email: {
-        regexp: {
-          value: EMAIL_PATTERN,
-          message: "Please insert a valid email",
-        },
-        required: "Email is required",
-      },
-
-      password: {
-        regexp: {
-          value: PASSWORD_PATTERN,
-          message: "Insecure password. Example: Mylongp@asword8",
-        },
-        required: "Password is required",
-      },
-    },
+  const { register, handleSumbmit, formRef } = useForm({
+    onFieldValidation: inputStylesController,
+    onSubmit,
   });
 
   return (
-    <form className={styles.form} onSubmit={(e) => handleSumbmit(e, onSubmit)}>
+    <form className={styles.form} onSubmit={handleSumbmit} ref={formRef}>
       <div className={styles.logo}>
         <Image src="/ORTEX_logo.png" layout="fill" alt="ORTEX" />
       </div>
       <section>
         <Input
           type="text"
-          name="email"
           placeholder="Email"
-          onChange={register}
+          register={{
+            ...register("email", {
+              pattern: {
+                value: EMAIL_PATTERN,
+                message: "Please insert a valid email",
+              },
+              required: "Email is required",
+            }),
+          }}
           icon={
             <Image
               layout="fill"
@@ -57,9 +49,16 @@ export default function LoginForm({
         />
         <Input
           type="password"
-          name="password"
           placeholder="Password"
-          onChange={register}
+          register={{
+            ...register("password", {
+              pattern: {
+                value: PASSWORD_PATTERN,
+                message: "Insecure password. Example: Mylongp@asword8",
+              },
+              required: "Password is required",
+            }),
+          }}
           icon={
             <Image
               layout="fill"
