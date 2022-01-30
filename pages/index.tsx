@@ -8,6 +8,7 @@ import LoginForm from "@/components/LoginForm";
 import LoadingModal from "@/components/LoadingModal";
 import PopNotification from "@/components/Dialog";
 import { formatCurrencyRate } from "@/utils/formatCurrencyRate";
+import { env } from "env";
 const Home: NextPage = () => {
   const [pageState, setPageState] = React.useState<{
     isLoading: boolean;
@@ -95,9 +96,7 @@ const Home: NextPage = () => {
   };
 
   React.useEffect(() => {
-    const socketConnection = new WebSocket(
-      "ws://stream.tradingeconomics.com/?client=guest:guest"
-    );
+    const socketConnection = new WebSocket(env.WEBSOCKET_URL);
 
     socketConnection.onopen = (event: any) => {
       if (event.currentTarget.readyState == 1) {
