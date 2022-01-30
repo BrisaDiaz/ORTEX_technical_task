@@ -40,10 +40,22 @@ export default function FloatingCurrencyRate({
       <article className={styles.floatingBox}>
         <section>
           <div className={styles.flag}>
-            <Image layout="fill" src="/flags/EUR.png" alt="EUR" />
+            <Image
+              layout="fill"
+              src="/flags/EUR.png"
+              alt="EUR"
+              placeholder="blur"
+              blurDataURL="/flags/EUR.png"
+            />
           </div>
           <div className={styles.flag}>
-            <Image layout="fill" src="/flags/USD.png" alt="USD" />
+            <Image
+              layout="fill"
+              src="/flags/USD.png"
+              alt="USD"
+              placeholder="blur"
+              blurDataURL="/flags/USD.png"
+            />
           </div>
         </section>
         <section>
@@ -70,15 +82,19 @@ export default function FloatingCurrencyRate({
         <div className={styles.flag}>
           <Image
             layout="fill"
+            placeholder="blur"
             src={currentData?.from?.flag_src}
-            alt={currentData?.to?.currency}
+            alt={currentData?.from?.currency}
+            blurDataURL={currentData?.from?.flag_src}
           />
         </div>
         <div className={styles.flag}>
           <Image
             layout="fill"
+            placeholder="blur"
             src={currentData?.to?.flag_src}
             alt={currentData?.to?.currency}
+            blurDataURL={currentData?.to?.flag_src}
           />
         </div>
       </section>

@@ -2,10 +2,16 @@
   position: relative;
   width: 45px;
   height: 45px;
-  background: var(--var-text-color);
+  background: var(--var-bg-lght);
   border-radius: 50%;
   pointer-events: none;
+  user-select: none;
   border: 1px solid var(--var--primary);
+  overflow: hidden;
+}
+.flag span img {
+  pointer-events: none;
+  user-select: none;
 }
 .down .flag {
   border: 1px solid var(--var--secondary);

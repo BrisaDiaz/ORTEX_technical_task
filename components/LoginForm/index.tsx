@@ -21,7 +21,14 @@ export default function LoginForm({
   return (
     <form className={styles.form} onSubmit={handleSumbmit} ref={formRef}>
       <div className={styles.logo}>
-        <Image src="/ORTEX_logo.png" layout="fill" alt="ORTEX" />
+        <Image
+          src="/ORTEX_logo.png"
+          layout="fill"
+          alt="ORTEX"
+          loading="eager"
+          placeholder="blur"
+          blurDataURL="/ORTEX_logo.png"
+        />
       </div>
       <section>
         <Input
@@ -43,7 +50,6 @@ export default function LoginForm({
               alt="email"
               objectFit="contain"
               loading="eager"
-              priority={true}
             />
           }
         />
@@ -65,6 +71,7 @@ export default function LoginForm({
               objectFit="contain"
               src="/icons/password.svg"
               alt="password"
+              loading="eager"
             />
           }
         />

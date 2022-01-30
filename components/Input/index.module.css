@@ -5,7 +5,7 @@
 .inputWrapper input {
   -webkit-appearance: none !important;
   width: 100%;
-  padding: 18px 45px;
+  padding: 14px 45px;
   border-radius: var(--border-radius);
   border: 2px solid var(--var--primary);
   background: var(--var-text-color);
@@ -39,10 +39,17 @@
   transform: translateY(-50%);
   z-index: 10;
   pointer-events: none;
+  user-select: none;
 }
 .inputIcone span {
   max-width: 20px;
 }
 .inputIcone span img {
-  -webkit-user-drag: none;
+  pointer-events: none;
+  user-select: none;
+}
+@media (min-width: 500px) {
+  .inputWrapper input {
+    padding: 16px 45px;
+  }
 }
