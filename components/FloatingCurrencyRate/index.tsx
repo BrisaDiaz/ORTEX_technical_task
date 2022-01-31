@@ -35,6 +35,8 @@ export default function FloatingCurrencyRate({
   }, [data]);
   /// avoid client and server current date confict be waiting until code is running on the client side
   if (!currentDate) return <div />;
+
+  /// in case the data couldn't be retrieved a loading state of  the component will be shown
   if (!currentData)
     return (
       <article className={styles.floatingBox}>
@@ -71,7 +73,7 @@ export default function FloatingCurrencyRate({
         </section>
       </article>
     );
-
+  /// component when the data has been retrieved successfully
   return (
     <article
       className={`${styles.floatingBox} ${

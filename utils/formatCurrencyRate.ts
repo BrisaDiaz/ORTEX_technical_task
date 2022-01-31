@@ -35,7 +35,7 @@ type MarketPlaceSubscription =
     };
 
 export const formatCurrencyRate = (data: MarketPlaceSubscription) => {
-  if (!data.pch || !data.price || !data.dt) return;
+  if (!data.pch || !data.price || !data.dt) return null;
   const from = data.topic.slice(0, 3);
   const to = data.topic.slice(3);
 

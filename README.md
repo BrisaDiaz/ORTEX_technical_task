@@ -1,11 +1,10 @@
 ## Getting Started
 
-First, run the development server:
+run the next commands on your terminal
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -25,3 +24,11 @@ Next js
 ## Aditional libraries
 
 No additional libraries
+
+## Features
+
+- Customizable form with validation.
+- Accecible modals.
+- Push notification.
+- Loading indicators.
+- Websocket feed with the latest EUR/USD exchange rate.

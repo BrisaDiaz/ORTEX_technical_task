@@ -109,7 +109,10 @@ const Home: NextPage = () => {
       const data = JSON.parse(message.data);
 
       if (data.topic === "EURUSD") {
-        setEURUSDMarketPrice(formatCurrencyRate(data));
+        const formattedData = formatCurrencyRate(data);
+        //// in case  the information about the latest price is not retrieved from for the websocket feed
+        //// the formattedData will be null and a loading indicator will be shown until the next sucessfull responce
+        setEURUSDMarketPrice(formattedData);
       }
     };
     socketConnection.onclose = () => {
