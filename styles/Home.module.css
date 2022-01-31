@@ -5,24 +5,40 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  padding-top: 110px;
 }
 .currencySection {
   min-height: 90px;
   padding: 8px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
 }
-@media (min-width: 700px) {
+.formSection {
+  margin-top: auto;
+}
+@media (min-width: 425px) {
+  .main {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
   .main {
     width: 100%;
     flex-direction: row;
   }
 
   .formSection {
-    max-width: 600px;
-    min-width: 400px;
+    max-width: 50%;
+
     order: 1;
     width: 100%;
   }
   .currencySection {
+    position: relative;
     width: 100%;
     flex: 1 1;
     padding: 60px;
