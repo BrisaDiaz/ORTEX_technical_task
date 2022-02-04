@@ -30,7 +30,7 @@
 .inputWrapper input:-moz-focusring {
   color: transparent;
 }
-.inputIcone {
+.inputIcon {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -41,10 +41,10 @@
   pointer-events: none;
   user-select: none;
 }
-.inputIcone span {
+.inputIcon span {
   max-width: 20px;
 }
-.inputIcone span img {
+.inputIcon span img {
   pointer-events: none;
   user-select: none;
 }

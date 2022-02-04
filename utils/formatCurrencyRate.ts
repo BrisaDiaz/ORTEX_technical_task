@@ -41,7 +41,7 @@ export const formatCurrencyRate = (data: MarketPlaceSubscription) => {
 
   return {
     state: data?.pch >= 0 ? ("high" as const) : ("down" as const),
-    exange: data.price,
+    exchange: data.price,
     popchain: data.pch,
     from: {
       currency: from,

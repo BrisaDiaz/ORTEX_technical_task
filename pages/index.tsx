@@ -29,7 +29,7 @@ const Home: NextPage = () => {
   const handleCloseModal = () => {
     setModalState({ isOpen: false });
   };
-  const autoClearNotifiaction = (timeout?: number) => {
+  const autoClearNotification = (timeout?: number) => {
     return setTimeout(() => {
       setPageState({
         notification: {
@@ -47,17 +47,17 @@ const Home: NextPage = () => {
       ...pageState,
       isLoading: true,
     });
-    /// simulate an asyncronus task
+    /// simulate an asynchronous task
     setTimeout(() => {
       setPageState({
         notification: {
           title: "An email has been sent to you",
           message:
-            "Please check your inbox for the instruccions to keep in order to reset your password. If there is't set your email address again to send you a new email.",
+            "Please check your inbox for the instructions to keep in order to reset your password. If there is't set your email address again to send you a new email.",
         },
         isLoading: false,
       });
-      return autoClearNotifiaction(7000);
+      return autoClearNotification(7000);
     }, 2000);
   };
 
@@ -67,7 +67,7 @@ const Home: NextPage = () => {
       ...pageState,
       isLoading: true,
     });
-    const responce = await fetch("/api/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,12 +75,12 @@ const Home: NextPage = () => {
       body: JSON.stringify(formData),
     });
 
-    const data = await responce.json();
+    const data = await response.json();
 
     data.user
       ? setPageState({
           notification: {
-            title: "Wellcome back!!",
+            title: "Welcome back!!",
             message: `User credentials: ${data.user.email}`,
           },
           isLoading: false,
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
           },
           isLoading: false,
         });
-    return autoClearNotifiaction();
+    return autoClearNotification();
   };
 
   React.useEffect(() => {
@@ -111,7 +111,7 @@ const Home: NextPage = () => {
       if (data.topic === "EURUSD") {
         const formattedData = formatCurrencyRate(data);
         //// in case  the information about the latest price is not retrieved from for the websocket feed
-        //// the formattedData will be null and a loading indicator will be shown until the next sucessfull responce
+        //// the formattedData will be null and a loading indicator will be shown until the next sucessfull response
         setEURUSDMarketPrice(formattedData);
       }
     };
@@ -151,7 +151,7 @@ const Home: NextPage = () => {
           isOpen={Boolean(pageState.notification.title)}
           title={pageState.notification.title}
           message={pageState.notification.message}
-          onClose={autoClearNotifiaction}
+          onClose={autoClearNotification}
         />
       </main>
     </div>

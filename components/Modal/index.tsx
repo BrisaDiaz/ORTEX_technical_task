@@ -21,7 +21,7 @@ export default function Modal({
   const { tabIndex } = useModalFocus({
     isOpen,
     onEscape: onClose,
-    moldalSelector: '[aria-label="modal"]',
+    Selector: '[aria-label="modal"]',
   });
   return (
     <aside

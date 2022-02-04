@@ -3,11 +3,11 @@ export default function inputStylesController(
   errors: string[]
 ) {
   const isDirty = errors.length;
-  const parentComponet = input.parentNode;
-  const alert = parentComponet?.querySelector(
+  const parentComponent = input.parentNode;
+  const alert = parentComponent?.querySelector(
     '[role="alert"]'
   ) as HTMLParagraphElement;
-  if (!alert || !input || !parentComponet) return;
+  if (!alert || !input || !parentComponent) return;
 
   if (isDirty) {
     alert.textContent = errors[errors.length - 1];

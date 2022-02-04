@@ -17,7 +17,7 @@ export default function Input({
     <div className={`${styles.inputWrapper}`}>
       <small role="alert" className={styles.errorMessage}></small>
 
-      <div className={styles.inputIcone}>{icon}</div>
+      <div className={styles.inputIcon}>{icon}</div>
       <input
         type={type}
         {...register}

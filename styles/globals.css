@@ -2,7 +2,7 @@
   --var--primary: #33afaa;
   --var--secondary: #ea4a48;
   --var--secondary-dark: #f53f3d;
-  --var-bg-lght: #0f181b;
+  --var-bg-light: #0f181b;
   --var-bg: #081114;
   --var-text-color: #e6e6e6;
   --black-light: #1e1e25;
@@ -42,6 +42,7 @@ body {
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+  display: none;
 }
 
 *::-webkit-scrollbar-track {
@@ -54,4 +55,9 @@ body {
   height: 50px;
   cursor: default;
   border: 1px solid transparent;
+}
+@media (min-width: 768px) {
+  *::-webkit-scrollbar {
+    display: block;
+  }
 }

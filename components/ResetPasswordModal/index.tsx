@@ -16,14 +16,14 @@ export default function ResetPasswordModal({
   onSubmit: (formData: { [key: string]: any }) => void;
   isOpen: boolean;
 }) {
-  const { register, handleSumbmit, formRef } = useForm({
+  const { register, handleSubmit, formRef } = useForm({
     onFieldValidation: inputStylesController,
     onSubmit,
   });
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <form className={styles.content} onSubmit={handleSumbmit} ref={formRef}>
+      <form className={styles.content} onSubmit={handleSubmit} ref={formRef}>
         <h2>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 

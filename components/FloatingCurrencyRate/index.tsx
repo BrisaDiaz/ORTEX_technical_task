@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import Image from "next/image";
 interface CurrencyRateData {
   state: "high" | "down";
-  exange: number;
+  exchange: number;
   popchain: number;
   from: {
     currency: string;
@@ -33,7 +33,7 @@ export default function FloatingCurrencyRate({
   React.useEffect(() => {
     setCurrentData(data);
   }, [data]);
-  /// avoid client and server current date confict be waiting until code is running on the client side
+  /// avoid client and server current date conflict be waiting until code is running on the client side
   if (!currentDate) return <div />;
 
   /// in case the data couldn't be retrieved a loading state of  the component will be shown
@@ -119,7 +119,7 @@ export default function FloatingCurrencyRate({
           </p>
         </div>
 
-        <p>{`1 ${data?.from?.currency} = ${data?.exange} ${data?.to?.currency}`}</p>
+        <p>{`1 ${data?.from?.currency} = ${data?.exchange} ${data?.to?.currency}`}</p>
       </section>
     </article>
   );

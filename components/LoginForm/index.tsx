@@ -13,13 +13,13 @@ export default function LoginForm({
   onForgotPassword: () => void;
   onSubmit: (formData: { [key: string]: any }) => void;
 }) {
-  const { register, handleSumbmit, formRef } = useForm({
+  const { register, handleSubmit, formRef } = useForm({
     onFieldValidation: inputStylesController,
     onSubmit,
   });
 
   return (
-    <form className={styles.form} onSubmit={handleSumbmit} ref={formRef}>
+    <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
       <div className={styles.logo}>
         <Image
           src="/ORTEX_logo.png"
@@ -60,7 +60,7 @@ export default function LoginForm({
             ...register("password", {
               pattern: {
                 value: PASSWORD_PATTERN,
-                message: "Insecure password. Example: Mylongp@asword8",
+                message: "Insecure password. Example: MylongP@ssword8",
               },
               required: "Password is required",
             }),

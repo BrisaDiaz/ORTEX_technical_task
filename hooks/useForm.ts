@@ -34,7 +34,7 @@ export default function useForm({
   onFieldValidation?: (input: HTMLInputElement, errors: string[]) => void;
   onSubmit: (data: { [key: string]: any }) => void;
 }) {
-  const [attemptsCount, setAttemtsCount] = React.useState<number>(0);
+  const [attemptsCount, setAttemptsCount] = React.useState<number>(0);
 
   const [formState, setFormState] = React.useState<FormState>({
     values: {},
@@ -168,7 +168,7 @@ export default function useForm({
     };
   };
 
-  const handleSumbmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     let isFormDirty = false;
@@ -186,7 +186,7 @@ export default function useForm({
         if (isDirty) isFormDirty = true;
       }
     });
-    setAttemtsCount(attemptsCount + 1);
+    setAttemptsCount(attemptsCount + 1);
     if (!isFormDirty) return onSubmit(formState.values);
   };
 
@@ -218,7 +218,7 @@ export default function useForm({
     setError,
     getValue,
     register,
-    handleSumbmit,
+    handleSubmit,
     formRef,
     attemptsCount,
     errors: formState.errors,
