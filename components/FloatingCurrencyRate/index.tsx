@@ -45,8 +45,6 @@ export default function FloatingCurrencyRate({
             Loading...
           </p>
         </div>
-
-        <p>Loading... </p>
       </article>
     );
   /// component when the data has been retrieved successfully
