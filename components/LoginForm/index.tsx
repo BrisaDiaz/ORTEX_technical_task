@@ -5,7 +5,7 @@ import Image from "next/image";
 import Button from "../Button/index";
 import { EMAIL_PATTERN, PASSWORD_PATTERN } from "@/utils/regex";
 import useForm from "@/hooks/useForm";
-import inputStylesController from "@/utils/inputStylesController";
+
 export default function LoginForm({
   onForgotPassword,
   onSubmit,
@@ -13,13 +13,12 @@ export default function LoginForm({
   onForgotPassword: () => void;
   onSubmit: (formData: { [key: string]: any }) => void;
 }) {
-  const { register, handleSubmit, formRef } = useForm({
-    onFieldValidation: inputStylesController,
+  const { register, handleSubmit, errors } = useForm({
     onSubmit,
   });
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.logo}>
         <Image
           src="/ORTEX_logo.png"
@@ -35,6 +34,7 @@ export default function LoginForm({
           type="text"
           placeholder="Email"
           autoFocus={true}
+          errors={errors["email"]}
           register={{
             ...register("email", {
               pattern: {
@@ -55,6 +55,7 @@ export default function LoginForm({
           }
         />
         <Input
+          errors={errors["password"]}
           type="password"
           placeholder="Password"
           register={{

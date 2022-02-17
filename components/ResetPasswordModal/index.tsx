@@ -5,7 +5,6 @@ import Image from "next/image";
 import Input from "../Input";
 import Button from "../Button";
 import { EMAIL_PATTERN } from "@/utils/regex";
-import inputStylesController from "@/utils/inputStylesController";
 import useForm from "@/hooks/useForm";
 export default function ResetPasswordModal({
   onSubmit,
@@ -16,8 +15,7 @@ export default function ResetPasswordModal({
   onSubmit: (formData: { [key: string]: any }) => void;
   isOpen: boolean;
 }) {
-  const { register, handleSubmit, formRef } = useForm({
-    onFieldValidation: inputStylesController,
+  const { register, handleSubmit, errors } = useForm({
     onSubmit,
   });
 
@@ -28,12 +26,13 @@ export default function ResetPasswordModal({
       aria-hidden={isOpen}
       aria-labelledby="reset password"
     >
-      <form className={styles.content} onSubmit={handleSubmit} ref={formRef}>
+      <form className={styles.content} onSubmit={handleSubmit}>
         <h2>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 
         <Input
           type="text"
+          errors={errors["email"]}
           register={{
             ...register("email", {
               pattern: {

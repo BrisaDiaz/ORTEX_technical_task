@@ -23,7 +23,6 @@ export interface FormState {
   values: { [key: string]: string | string[] | FileList };
   errors: { [key: string]: string[] };
   validations: { [key: string]: InputValidations };
-  inputs: { [key: string]: HTMLInputElement };
 }
 export default function useForm({
   mode,
@@ -31,7 +30,7 @@ export default function useForm({
   onSubmit,
 }: {
   mode?: "onChange" | "onBlur" | "onSubmit";
-  onFieldValidation?: (input: HTMLInputElement, errors: string[]) => void;
+  onFieldValidation?: (field: string, errors: string[]) => void;
   onSubmit: (data: { [key: string]: any }) => void;
 }) {
   const [attemptsCount, setAttemptsCount] = React.useState<number>(0);
@@ -40,10 +39,7 @@ export default function useForm({
     values: {},
     validations: {},
     errors: {},
-    inputs: {},
   });
-
-  const formRef: React.LegacyRef<HTMLFormElement> = React.useRef(null);
 
   const setFieldValidations = (
     fieldName: string,
@@ -59,22 +55,6 @@ export default function useForm({
         validations: { ...formState.validations, [fieldName]: validations },
       });
     }
-  };
-  const setFieldInput = (fieldName: string) => {
-    //// avoid re-render infinite loop.
-    const input = formRef?.current?.querySelector(
-      `[name="${fieldName}"]`
-    ) as HTMLInputElement;
-
-    if (input && !Object.keys(formState.inputs).includes(fieldName)) {
-      setFormState({
-        ...formState,
-        inputs: { ...formState.inputs, [fieldName]: input },
-      });
-    }
-  };
-  const getFieldInput = (fieldName: string) => {
-    return formState.inputs[fieldName];
   };
 
   const setErrors = (errors: { [key: string]: string[] }) => {
@@ -172,7 +152,7 @@ export default function useForm({
     e.preventDefault();
     e.stopPropagation();
     let isFormDirty = false;
-    const fields = Object.keys(formState.inputs);
+    const fields = Object.keys(formState.validations);
 
     fields.forEach((fieldName) => {
       if (formState.validations[fieldName]) {
@@ -181,8 +161,7 @@ export default function useForm({
           formState.values[fieldName],
           formState.validations[fieldName]
         );
-        onFieldValidation &&
-          onFieldValidation(getFieldInput(fieldName), errors);
+        onFieldValidation && onFieldValidation(fieldName, errors);
         if (isDirty) isFormDirty = true;
       }
     });
@@ -192,7 +171,7 @@ export default function useForm({
 
   function register(fieldName: string, validations?: InputValidations) {
     setFieldValidations(fieldName, validations);
-    setFieldInput(fieldName);
+
     const props = {
       name: fieldName,
 
@@ -201,14 +180,14 @@ export default function useForm({
 
         if (validations && mode == "onChange") {
           const { errors } = validate(fieldName, e.target.value, validations);
-          onFieldValidation && onFieldValidation(e.target, errors);
+          onFieldValidation && onFieldValidation(e.target.name, errors);
         }
       },
       onBlur: function (e: React.ChangeEvent<HTMLInputElement>) {
         if (validations && mode == "onBlur") {
           const { errors } = validate(fieldName, e.target.value, validations);
 
-          onFieldValidation && onFieldValidation(e.target, errors);
+          onFieldValidation && onFieldValidation(e.target.name, errors);
         }
       },
     };
@@ -219,7 +198,7 @@ export default function useForm({
     getValue,
     register,
     handleSubmit,
-    formRef,
+
     attemptsCount,
     errors: formState.errors,
     values: formState.values,
