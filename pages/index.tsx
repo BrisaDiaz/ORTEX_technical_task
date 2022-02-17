@@ -133,12 +133,6 @@ const Home: NextPage = () => {
         setEURUSDMarketPrice(formattedData);
       }
     };
-    socketConnection.onclose = () => {
-      console.error("Websocket connection closed.");
-    };
-    socketConnection.onerror = (reason) => {
-      console.error("Websocket error: " + reason.toString());
-    };
   }, []);
 
   return (
