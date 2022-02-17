@@ -41,7 +41,8 @@ Start the server
 
 ## Api endpoints
 
-login: http://localhost:3000/api/login
+Login: http://localhost:3000/api/login
+Reset password: http://localhost:3000/api/resetPassword
 
 - Error case user = unregistredUser@email.com
 
@@ -66,7 +67,7 @@ No additional libraries
 ## Folder structure
 
 .  
-├── components (Components folder )  
+├── components (Components folder)  
 │ └── Component  
 │ ├── index.tsx (Functional component)  
 │ └── index.module.css (Component styles)  

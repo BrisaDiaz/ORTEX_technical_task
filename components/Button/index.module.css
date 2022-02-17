@@ -5,7 +5,7 @@
   width: 100%;
   font-size: 20px;
   border-radius: var(--border-radius);
-  background-color: var(--var--secondary);
+  background-color: var(--secondary-dark);
   color: inherit;
   border: 2px solid transparent;
   cursor: pointer;
@@ -37,20 +37,17 @@
 
   transition: all 0.1s ease-in-out;
 }
-.button:hover,
-.button:focus {
-  background-color: var(--var--secondary-dark);
-}
+
 .button:focus {
   outline-offset: 2px;
-  outline-color: var(--var--secondary-dark);
+  outline-color: var(--secondary-dark);
   outline-width: 2px;
 }
 
 .button:active {
-  border: 2px solid var(--var--secondary-dark);
+  border: 2px solid var(--secondary-dark);
 
-  background-color: var(--var--secondary);
+  background-color: var(--secondary);
 }
 .button:active::after,
 .button:active::before {

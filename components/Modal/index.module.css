@@ -14,10 +14,10 @@
   top: 0;
 }
 .modalHeader {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   background-color: var(--black-light);
-  padding: 20px 25px;
+  padding: 20px 15px;
 }
 .closeBtn {
   position: relative;
@@ -61,5 +61,5 @@
   overflow-y: auto;
   overflow-x: hidden;
   transition: all 0.5s ease-in-out;
-  border-radius: 30px;
+  border-radius: var(--border-radius);
 }

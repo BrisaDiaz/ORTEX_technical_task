@@ -13,7 +13,9 @@ export default function Modal({
   children: React.ReactNode;
 }) {
   const [isInteracting, setisInteracting] = React.useState<boolean>(false);
-
+  const modalRef = React.useRef(null) as
+    | React.LegacyRef<HTMLElement>
+    | undefined;
   const handleModalInteraction = () => {
     if (isInteracting) return;
     onClose();
@@ -21,13 +23,13 @@ export default function Modal({
   const { tabIndex } = useModalFocus({
     isOpen,
     onEscape: onClose,
-    Selector: '[aria-label="modal"]',
+    ref: modalRef,
   });
   return (
     <aside
+      ref={modalRef}
       tabIndex={tabIndex}
-      aria-label="modal"
-      role="complementary"
+      role="dialog"
       className={`${styles.modal} ${isOpen ? styles.openModal : ""}`}
       onClick={() => handleModalInteraction()}
     >

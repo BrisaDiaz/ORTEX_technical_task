@@ -1,26 +1,35 @@
 import React from "react";
 export default function useModalFocus({
-  Selector,
+  ref,
   isOpen,
   onEscape,
 }: {
-  Selector: string;
+  ref: any;
   isOpen: boolean;
   onEscape?: () => void;
 }) {
   const [tabIndex, setTabIndex] = React.useState<-1 | 0>(-1);
+  const [fallbackElement, setFallbackElement] =
+    React.useState<HTMLElement | null>(null);
+
   React.useEffect(() => {
-    if (!isOpen) return setTabIndex(-1);
+    if (!isOpen) {
+      setTabIndex(-1);
+      fallbackElement ? fallbackElement?.focus() : false;
+      return;
+    }
+    setFallbackElement((document?.activeElement as HTMLElement) || null);
     setTabIndex(0);
+
     handleFocus();
   }, [isOpen]);
 
   const handleFocus = () => {
     const focusableElements =
       'a,button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    const modal = document.querySelector(Selector);
+    if (!ref || !ref.current) return;
 
-    if (!modal) return;
+    const modal = ref.current as HTMLElement;
 
     const firstFocusableElement = modal.querySelectorAll(
       focusableElements

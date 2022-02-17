@@ -42,14 +42,12 @@ export const formatCurrencyRate = (data: MarketPlaceSubscription) => {
   return {
     state: data?.pch >= 0 ? ("high" as const) : ("down" as const),
     exchange: data.price,
-    popchain: data.pch,
+    percentage: data.pch,
     from: {
       currency: from,
-      flag_src: `/flags/${from}.png`,
     },
     to: {
       currency: to,
-      flag_src: `/flags/${to}.png`,
     },
     lastUpdate: data.dt,
   };

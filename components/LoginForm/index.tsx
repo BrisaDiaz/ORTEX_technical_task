@@ -34,6 +34,7 @@ export default function LoginForm({
         <Input
           type="text"
           placeholder="Email"
+          autoFocus={true}
           register={{
             ...register("email", {
               pattern: {
@@ -76,7 +77,12 @@ export default function LoginForm({
           }
         />
         <Button text="Login" />
-        <p onClick={onForgotPassword} tabIndex={0} onKeyDown={onForgotPassword}>
+        <p
+          onClick={onForgotPassword}
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && onForgotPassword()}
+          aria-label="open reset password form"
+        >
           Forgot your password?
         </p>
       </section>

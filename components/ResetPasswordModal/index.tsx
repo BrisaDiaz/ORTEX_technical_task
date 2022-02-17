@@ -22,7 +22,12 @@ export default function ResetPasswordModal({
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      aria-hidden={isOpen}
+      aria-labelledby="reset password"
+    >
       <form className={styles.content} onSubmit={handleSubmit} ref={formRef}>
         <h2>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>

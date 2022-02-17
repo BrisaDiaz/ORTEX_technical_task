@@ -4,14 +4,12 @@ import Image from "next/image";
 interface CurrencyRateData {
   state: "high" | "down";
   exchange: number;
-  popchain: number;
+  percentage: number;
   from: {
     currency: string;
-    flag_src: string;
   };
   to: {
     currency: string;
-    flag_src: string;
   };
   lastUpdate: number;
 }
@@ -40,37 +38,15 @@ export default function FloatingCurrencyRate({
   if (!currentData)
     return (
       <article className={styles.floatingBox}>
-        <section>
-          <div className={styles.flag}>
-            <Image
-              layout="fill"
-              src="/flags/EUR.png"
-              alt="EUR"
-              placeholder="blur"
-              blurDataURL="/flags/EUR.png"
-            />
-          </div>
-          <div className={styles.flag}>
-            <Image
-              layout="fill"
-              src="/flags/USD.png"
-              alt="USD"
-              placeholder="blur"
-              blurDataURL="/flags/USD.png"
-            />
-          </div>
-        </section>
-        <section>
-          <small>{new Date(currentDate).toLocaleString()}</small>
-          <div className={styles.percentageChange}>
-            <div className={styles.stateIcon}></div>
-            <p className={"primary"} style={{ fontSize: "14px" }}>
-              Loading...
-            </p>
-          </div>
+        <small>{new Date(currentDate).toLocaleString()}</small>
+        <div className={styles.percentageChange}>
+          <div className={styles.stateIcon}></div>
+          <p className={"primary"} style={{ fontSize: "14px" }}>
+            Loading...
+          </p>
+        </div>
 
-          <p>Loading... </p>
-        </section>
+        <p>Loading... </p>
       </article>
     );
   /// component when the data has been retrieved successfully
@@ -80,47 +56,25 @@ export default function FloatingCurrencyRate({
         currentData.state === "down" ? styles.down : ""
       }`}
     >
-      <section>
-        <div className={styles.flag}>
+      <small>{new Date(currentData?.lastUpdate).toLocaleString()}</small>
+      <div className={styles.percentageChange}>
+        <div className={styles.stateIcon}>
           <Image
             layout="fill"
-            placeholder="blur"
-            src={currentData?.from?.flag_src}
-            alt={currentData?.from?.currency}
-            blurDataURL={currentData?.from?.flag_src}
+            src={
+              currentData.state === "high"
+                ? "/icons/high.svg"
+                : "/icons/down.svg"
+            }
+            alt={currentData?.state}
           />
         </div>
-        <div className={styles.flag}>
-          <Image
-            layout="fill"
-            placeholder="blur"
-            src={currentData?.to?.flag_src}
-            alt={currentData?.to?.currency}
-            blurDataURL={currentData?.to?.flag_src}
-          />
-        </div>
-      </section>
-      <section>
-        <small>{new Date(currentData?.lastUpdate).toLocaleString()}</small>
-        <div className={styles.percentageChange}>
-          <div className={styles.stateIcon}>
-            <Image
-              layout="fill"
-              src={
-                currentData.state === "high"
-                  ? "/icons/high.svg"
-                  : "/icons/down.svg"
-              }
-              alt={currentData?.state}
-            />
-          </div>
-          <p className={currentData.state === "high" ? "primary" : "secondary"}>
-            {currentData?.popchain}
-          </p>
-        </div>
+        <p className={currentData.state === "high" ? "primary" : "secondary"}>
+          {currentData?.percentage}
+        </p>
+      </div>
 
-        <p>{`1 ${data?.from?.currency} = ${data?.exchange} ${data?.to?.currency}`}</p>
-      </section>
+      <p>{`1 ${data?.from?.currency} = ${data?.exchange} ${data?.to?.currency}`}</p>
     </article>
   );
 }

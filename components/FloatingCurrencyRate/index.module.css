@@ -1,53 +1,12 @@
-.flag {
-  position: relative;
-  width: 45px;
-  height: 45px;
-  background: var(--var-bg-light);
-  border-radius: 50%;
-  pointer-events: none;
-  user-select: none;
-  border: 1px solid var(--var--primary);
-  overflow: hidden;
-}
-.flag span img {
-  pointer-events: none;
-  user-select: none;
-}
-.down .flag {
-  border: 1px solid var(--var--secondary);
-}
-
-.floatingBox {
-  display: flex;
-  width: max-content;
-  padding: 16px;
-  border-radius: var(--border-radius);
-  min-width: max-content;
-  box-shadow: var(--box-shadow);
-
-  background: var(--var-bg-light);
-}
-.floatingBox section:first-child {
-  display: flex;
-  align-items: flex-end;
-  margin-right: -1rem;
-  justify-content: flex-end;
-}
 .floatingBox p {
   margin: 0;
 }
-.floatingBox section:first-child div:last-child {
-  position: relative;
-  z-index: 10;
 
-  top: -25%;
-  left: -25%;
-}
-.floatingBox section:last-child {
+.floatingBox {
   text-align: end;
 }
 
-.floatingBox section:last-child .percentageChange {
+.floatingBox .percentageChange {
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -55,23 +14,23 @@
   max-height: 2rem;
   margin: 0 0;
 }
-.floatingBox section:last-child .percentageChange .stateIcon {
+.floatingBox .percentageChange .stateIcon {
   position: relative;
   width: 14px;
   height: 8px;
   margin-top: 2px;
 }
-.floatingBox section:last-child .percentageChange p {
+.floatingBox .percentageChange p {
   font-weight: 600;
   font-size: 20px;
   margin: 0;
   letter-spacing: 1px;
 }
-.floatingBox section:last-child p {
+.floatingBox p {
   font-size: 12px;
   font-weight: 600;
 }
-.floatingBox section:last-child small {
+.floatingBox small {
   font-size: 10px;
 }
 @media (min-width: 700px) {

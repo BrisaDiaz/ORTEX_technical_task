@@ -4,7 +4,9 @@
   width: 100%;
   padding: 20px;
 }
-
+.content h2 {
+  margin-top: 0;
+}
 .content button {
   margin: 10px auto;
 }

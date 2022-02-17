@@ -12,10 +12,10 @@ export default function inputStylesController(
   if (isDirty) {
     alert.textContent = errors[errors.length - 1];
     alert.style.display = "block";
-    input.style.border = "2px solid var(--var--secondary)";
+    input.style.border = "2px solid var(--secondary)";
   } else {
     alert.textContent = "";
     alert.style.display = "none";
-    input.style.border = "2px solid var(--var--primary)";
+    input.style.border = "2px solid var(--primary)";
   }
 }

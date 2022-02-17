@@ -19,12 +19,16 @@ const Home: NextPage = () => {
   });
 
   const [EURUSDMarketPrice, setEURUSDMarketPrice] = React.useState<any>(null);
-  const [modalState, setModalState] = React.useState<{ isOpen: boolean }>({
+  const [modalState, setModalState] = React.useState<{
+    isOpen: boolean;
+  }>({
     isOpen: false,
   });
 
   const handleOpenModal = () => {
-    setModalState({ isOpen: true });
+    setModalState({
+      isOpen: true,
+    });
   };
   const handleCloseModal = () => {
     setModalState({ isOpen: false });
@@ -41,24 +45,38 @@ const Home: NextPage = () => {
     }, timeout || 0);
   };
 
-  const handleResetPassword = (formData: { [key: string]: string }) => {
+  const handleResetPassword = async (formData: { [key: string]: string }) => {
     handleCloseModal();
     setPageState({
       ...pageState,
       isLoading: true,
     });
-    /// simulate an asynchronous task
-    setTimeout(() => {
-      setPageState({
-        notification: {
-          title: "An email has been sent to you",
-          message:
-            "Please check your inbox for the instructions to keep in order to reset your password. If there is't set your email address again to send you a new email.",
-        },
-        isLoading: false,
-      });
-      return autoClearNotification(7000);
-    }, 2000);
+    const response = await fetch("/api/resetPassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    Boolean(data.email)
+      ? setPageState({
+          notification: {
+            title: "An email has been sent to you",
+            message:
+              "Please check your inbox for the instructions to keep in order to reset your password. If there is't set your email address again to send you a new email.",
+          },
+          isLoading: false,
+        })
+      : setPageState({
+          notification: {
+            title: "Email could't be send",
+            message: data.message,
+          },
+          isLoading: false,
+        });
+    return autoClearNotification(7000);
   };
 
   const handleLogin = async (formData: { [key: string]: string }) => {
@@ -77,7 +95,7 @@ const Home: NextPage = () => {
 
     const data = await response.json();
 
-    data.user
+    Boolean(data.user)
       ? setPageState({
           notification: {
             title: "Welcome back!!",
@@ -92,7 +110,7 @@ const Home: NextPage = () => {
           },
           isLoading: false,
         });
-    return autoClearNotification();
+    return autoClearNotification(4000);
   };
 
   React.useEffect(() => {
