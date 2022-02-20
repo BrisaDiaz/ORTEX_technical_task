@@ -4,7 +4,12 @@ https://ortex-login-task.vercel.app/
 
 ## Screenshots
 
-![image](https://drive.google.com/uc?export=view&id=1VactRy4O_Cs6zvHes3B5SJsP3BByabWE)
+![image](https://res.cloudinary.com/myproyects/image/upload/v1645383079/proyects/all-screens-min_ooige0.webp)
+![image](https://res.cloudinary.com/myproyects/image/upload/v1645383082/proyects/descktop-min_qeev0a.webp)
+![image](https://res.cloudinary.com/myproyects/image/upload/v1645383078/proyects/mobile-min_fo6pxo.webp)
+![image](https://res.cloudinary.com/myproyects/image/upload/v1645383077/proyects/tablet-min_rxncei.webp)
+
+![image](https://res.cloudinary.com/myproyects/image/upload/v1645383078/proyects/lighthouse-min_omekxw.webp)
 
 ## Run Locally
 
@@ -48,18 +53,15 @@ Reset password: http://localhost:3000/api/resetPassword
 
 - Success case user = any other valid email
 
-## JavaScript framework
+## libraries
 
-Next js
-
-## Additional libraries
-
-No additional libraries
+Next js (React)
 
 ## Features
 
+- Lighthouse github pipeline.
 - Customizable form with validation.
-- Accessibility.
+- Accessible components.
 - Push notification.
 - Loading indicators.
 - Websocket feed with the latest EUR/USD exchange rate.
@@ -68,10 +70,8 @@ No additional libraries
 
 .  
 ├── components (Components folder)  
-│ └── Component  
-│ ├── index.tsx (Functional component)  
-│ └── index.module.css (Component styles)  
-├── interfaces (common typescript interfaces)  
+├── interfaces.ts (common typescript interfaces)  
+├── lighthouserc.js (lighthous config)
 ├── hooks (Custom hooks)  
 ├── styles (Pages level styles)  
 ├── public (Static assets)  
