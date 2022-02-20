@@ -8,10 +8,12 @@ import {CurrencyExchangeInfo} from "interfaces";
 export default function FloatingCurrencyRate({data}: {data: CurrencyExchangeInfo | null}) {
   const [currentDate, setCurrentDate] = React.useState(0);
   const [currentData, setCurrentData] = React.useState(data);
+
   React.useEffect(() => {
     const dateInterval = setInterval(() => {
       setCurrentDate(Date.now());
     }, 1000);
+
     return () => {
       clearInterval(dateInterval);
     };
@@ -24,6 +26,7 @@ export default function FloatingCurrencyRate({data}: {data: CurrencyExchangeInfo
 
   /// in case the data couldn't be retrieved a the component won't be shown
   if (!currentData) return <></>;
+
   /// component when the data has been retrieved successfully
   return (
     <article

@@ -1,5 +1,5 @@
 import React from "react";
-import type { NextPage } from "next";
+import type {NextPage} from "next";
 import Head from "next/head";
 
 import styles from "../styles/Home.module.css";
@@ -9,23 +9,19 @@ import FloatingCurrencyRate from "@/components/FloatingCurrencyRate";
 import LoginForm from "@/components/LoginForm";
 import LoadingModal from "@/components/LoadingModal";
 import PopNotification from "@/components/Dialog";
-import {
-  CurrencyExchangeInfo,
-  SocketCurrencyExchangeResponse,
-} from "interfaces";
+import {CurrencyExchangeInfo, SocketCurrencyExchangeResponse} from "interfaces";
 import mapCurrencyExchangeInfo from "@/mappers/currencyExchangeInfo";
-import { env } from "env";
+import {env} from "env";
 const Home: NextPage = () => {
   const [pageState, setPageState] = React.useState<{
     isLoading: boolean;
-    notification: { title: string; message: string };
+    notification: {title: string; message: string};
   }>({
     isLoading: false,
-    notification: { title: "", message: "" },
+    notification: {title: "", message: ""},
   });
 
-  const [EURUSDMarketPrice, setEURUSDMarketPrice] =
-    React.useState<null | CurrencyExchangeInfo>(null);
+  const [EURUSDMarketPrice, setEURUSDMarketPrice] = React.useState<null | CurrencyExchangeInfo>(null);
   const [modalState, setModalState] = React.useState<{
     isOpen: boolean;
   }>({
@@ -38,7 +34,7 @@ const Home: NextPage = () => {
     });
   };
   const handleCloseModal = () => {
-    setModalState({ isOpen: false });
+    setModalState({isOpen: false});
   };
   const autoClearNotification = (timeout?: number) => {
     return setTimeout(() => {
@@ -52,9 +48,7 @@ const Home: NextPage = () => {
     }, timeout || 0);
   };
 
-  const handleResetPassword = async (formData: {
-    [emailAddress: string]: string | FileList | string[];
-  }) => {
+  const handleResetPassword = async (formData: {[emailAddress: string]: string | FileList | string[]}) => {
     handleCloseModal();
     setPageState({
       ...pageState,
@@ -65,10 +59,11 @@ const Home: NextPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: formData.emailAddress }),
+      body: JSON.stringify({email: formData.emailAddress}),
     });
 
     const data = await response.json();
+
     Boolean(data.email)
       ? setPageState({
           notification: {
@@ -85,12 +80,11 @@ const Home: NextPage = () => {
           },
           isLoading: false,
         });
+
     return autoClearNotification(7000);
   };
 
-  const handleLogin = async (formData: {
-    [key: string]: string | FileList | string[];
-  }) => {
+  const handleLogin = async (formData: {[key: string]: string | FileList | string[]}) => {
     if (!formData) return;
     setPageState({
       ...pageState,
@@ -121,6 +115,7 @@ const Home: NextPage = () => {
           },
           isLoading: false,
         });
+
     return autoClearNotification(4000);
   };
 
@@ -129,22 +124,17 @@ const Home: NextPage = () => {
 
     socketConnection.onopen = (event: any) => {
       if (event?.currentTarget?.readyState == 1) {
-        socketConnection.send(
-          JSON.stringify({ topic: "subscribe", to: "EURUSD:CUR" })
-        );
+        socketConnection.send(JSON.stringify({topic: "subscribe", to: "EURUSD:CUR"}));
       }
     };
     socketConnection.onmessage = (message) => {
       const data = JSON.parse(message.data);
 
       if (data.topic === "EURUSD") {
-        const formattedData = mapCurrencyExchangeInfo(
-          data as SocketCurrencyExchangeResponse
-        );
+        const formattedData = mapCurrencyExchangeInfo(data as SocketCurrencyExchangeResponse);
         //// in case  the information about the latest price is not retrieved from for the websocket feed all data will be displayed
 
-        formattedData &&
-          setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
+        formattedData && setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
       }
     };
   }, []);
@@ -162,16 +152,9 @@ const Home: NextPage = () => {
           <FloatingCurrencyRate data={EURUSDMarketPrice} />
         </section>
         <section className={styles.formSection}>
-          <LoginForm
-            onForgotPassword={handleOpenModal}
-            onSubmit={handleLogin}
-          />
+          <LoginForm onForgotPassword={handleOpenModal} onSubmit={handleLogin} />
         </section>
-        <ResetPasswordModal
-          isOpen={modalState.isOpen}
-          onClose={handleCloseModal}
-          onSubmit={handleResetPassword}
-        />
+        <ResetPasswordModal isOpen={modalState.isOpen} onClose={handleCloseModal} onSubmit={handleResetPassword} />
         <LoadingModal isLoading={pageState.isLoading} />
         <PopNotification
           isOpen={Boolean(pageState.notification.title)}

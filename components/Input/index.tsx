@@ -11,17 +11,13 @@ function Input({
   icon: React.ReactNode;
 
   errors?: string[];
-  alertProps: { [key: string]: any };
+  alertProps: {[key: string]: any};
   inputProps: {
     [key: string]: any;
   };
 }) {
   return (
-    <div
-      className={`${styles.inputWrapper} ${
-        errors?.length ? styles.withError : ""
-      }`}
-    >
+    <div className={`${styles.inputWrapper} ${errors?.length ? styles.withError : ""}`}>
       <small className={styles.errorMessage} role="alert" {...alertProps}>
         {errors && errors?.length ? errors[errors?.length - 1] : ""}
       </small>

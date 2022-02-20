@@ -1,4 +1,3 @@
-import Reacts from "react";
 import Image from "next/image";
 
 import Input from "../Input/index";
@@ -6,7 +5,7 @@ import Button from "../Button/index";
 
 import styles from "./index.module.css";
 
-import { EMAIL_PATTERN, PASSWORD_PATTERN } from "@/utils/regex";
+import {EMAIL_PATTERN, PASSWORD_PATTERN} from "@/utils/regex";
 import useForm from "@/hooks/useForm";
 
 export default function LoginForm({
@@ -14,9 +13,9 @@ export default function LoginForm({
   onSubmit,
 }: {
   onForgotPassword: () => void;
-  onSubmit: (formData: { [key: string]: string | FileList | string[] }) => void;
+  onSubmit: (formData: {[key: string]: string | FileList | string[]}) => void;
 }) {
-  const { register, handleSubmit, errors } = useForm({
+  const {register, handleSubmit, errors} = useForm({
     onSubmit,
   });
 
@@ -34,17 +33,9 @@ export default function LoginForm({
       </div>
       <section>
         <Input
-          alertProps={{ id: "email-error" }}
+          alertProps={{id: "email-error"}}
           errors={errors["email"]}
-          icon={
-            <Image
-              alt="email"
-              layout="fill"
-              loading="eager"
-              objectFit="contain"
-              src="/icons/mail.svg"
-            />
-          }
+          icon={<Image alt="email" layout="fill" loading="eager" objectFit="contain" src="/icons/mail.svg" />}
           inputProps={{
             placeholder: "Email*",
             id: "email",
@@ -65,17 +56,9 @@ export default function LoginForm({
           }}
         />
         <Input
-          alertProps={{ id: "password-error" }}
+          alertProps={{id: "password-error"}}
           errors={errors["password"]}
-          icon={
-            <Image
-              alt="password"
-              layout="fill"
-              loading="eager"
-              objectFit="contain"
-              src="/icons/password.svg"
-            />
-          }
+          icon={<Image alt="password" layout="fill" loading="eager" objectFit="contain" src="/icons/password.svg" />}
           inputProps={{
             placeholder: "Password*",
             id: "password",

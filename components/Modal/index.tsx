@@ -27,6 +27,7 @@ export default function Modal({
     onEscape: onClose,
     ref: modalRef,
   });
+
   return (
     <aside
       ref={modalRef}
