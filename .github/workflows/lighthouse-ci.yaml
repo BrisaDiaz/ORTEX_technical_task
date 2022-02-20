@@ -5,7 +5,7 @@ jobs:
     name: Lighthouse CI
     runs-on: ubuntu-latest
     steps:
-  - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
@@ -15,8 +15,5 @@ jobs:
           npm install
       - name: run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.6.x
-        run: npm run build
-        run: lhci autorun--upload.target=temporary-public-storage || echo "LHCI failed!"
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          npm install -g @lhci/cli@0.3.x
+          lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
