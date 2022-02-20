@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./index.module.css";
 
 function Input({
@@ -11,7 +12,9 @@ function Input({
 
   errors?: string[];
   alertProps: { [key: string]: any };
-  inputProps: { [key: string]: any };
+  inputProps: {
+    [key: string]: any;
+  };
 }) {
   return (
     <div
@@ -19,7 +22,7 @@ function Input({
         errors?.length ? styles.withError : ""
       }`}
     >
-      <small role="alert" className={styles.errorMessage} {...alertProps}>
+      <small className={styles.errorMessage} role="alert" {...alertProps}>
         {errors && errors?.length ? errors[errors?.length - 1] : ""}
       </small>
       <div className={styles.inputIcon}>{icon}</div>

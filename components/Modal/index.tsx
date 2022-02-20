@@ -1,7 +1,9 @@
-import styles from "./index.module.css";
 import React from "react";
-import useModalFocus from "@/hooks/useModalFocus";
 import Image from "next/image";
+
+import styles from "./index.module.css";
+
+import useModalFocus from "@/hooks/useModalFocus";
 
 export default function Modal({
   onClose,
@@ -15,42 +17,35 @@ export default function Modal({
   role?: string;
 }) {
   const [isInteracting, setisInteracting] = React.useState<boolean>(false);
-  const modalRef = React.useRef(null) as
-    | React.LegacyRef<HTMLElement>
-    | undefined;
+  const modalRef = React.useRef(null) as React.LegacyRef<HTMLElement> | undefined;
   const handleModalInteraction = () => {
     if (isInteracting) return;
     onClose();
   };
-  const { tabIndex } = useModalFocus({
+  const {tabIndex} = useModalFocus({
     isOpen,
     onEscape: onClose,
     ref: modalRef,
   });
   return (
     <aside
-      aria-hidden={isOpen}
       ref={modalRef}
-      tabIndex={tabIndex}
+      aria-hidden={isOpen}
       className={`${styles.modal} ${isOpen ? styles.openModal : ""}`}
+      tabIndex={tabIndex}
       onClick={() => handleModalInteraction()}
     >
       <article
         className={styles.contentWrapper}
-        onMouseEnter={() => setisInteracting(true)}
-        onTouchStart={() => setisInteracting(true)}
-        onMouseLeave={() => setisInteracting(false)}
         role={role || "dialog"}
+        onMouseEnter={() => setisInteracting(true)}
+        onMouseLeave={() => setisInteracting(false)}
+        onTouchStart={() => setisInteracting(true)}
       >
         <div className={styles.modalHeader}>
           <div className={styles.closeBtn}>
-            <button onClick={onClose} aria-label="close" />
-            <Image
-              layout="fill"
-              src="/icons/close-x.svg"
-              alt=""
-              objectFit="contain"
-            />
+            <button aria-label="close" onClick={onClose} />
+            <Image alt="" layout="fill" objectFit="contain" src="/icons/close-x.svg" />
           </div>
         </div>
         {children}

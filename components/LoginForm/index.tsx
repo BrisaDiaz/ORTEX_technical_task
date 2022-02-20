@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
-import styles from "./index.module.css";
-import Input from "../Input/index";
+import Reacts from "react";
 import Image from "next/image";
+
+import Input from "../Input/index";
 import Button from "../Button/index";
+
+import styles from "./index.module.css";
+
 import { EMAIL_PATTERN, PASSWORD_PATTERN } from "@/utils/regex";
 import useForm from "@/hooks/useForm";
 
@@ -11,7 +14,7 @@ export default function LoginForm({
   onSubmit,
 }: {
   onForgotPassword: () => void;
-  onSubmit: (formData: { [key: string]: any }) => void;
+  onSubmit: (formData: { [key: string]: string | FileList | string[] }) => void;
 }) {
   const { register, handleSubmit, errors } = useForm({
     onSubmit,
@@ -21,18 +24,27 @@ export default function LoginForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.logo}>
         <Image
-          src="/ORTEX_logo.webp"
-          layout="fill"
           alt="ORTEX"
+          blurDataURL="/ORTEX_logo.webp"
+          layout="fill"
           loading="eager"
           placeholder="blur"
-          blurDataURL="/ORTEX_logo.webp"
+          src="/ORTEX_logo.webp"
         />
       </div>
       <section>
         <Input
-          errors={errors["email"]}
           alertProps={{ id: "email-error" }}
+          errors={errors["email"]}
+          icon={
+            <Image
+              alt="email"
+              layout="fill"
+              loading="eager"
+              objectFit="contain"
+              src="/icons/mail.svg"
+            />
+          }
           inputProps={{
             placeholder: "Email*",
             id: "email",
@@ -51,19 +63,19 @@ export default function LoginForm({
               required: "Email is required",
             }),
           }}
-          icon={
-            <Image
-              layout="fill"
-              src="/icons/mail.svg"
-              alt="email"
-              objectFit="contain"
-              loading="eager"
-            />
-          }
         />
         <Input
-          errors={errors["password"]}
           alertProps={{ id: "password-error" }}
+          errors={errors["password"]}
+          icon={
+            <Image
+              alt="password"
+              layout="fill"
+              loading="eager"
+              objectFit="contain"
+              src="/icons/password.svg"
+            />
+          }
           inputProps={{
             placeholder: "Password*",
             id: "password",
@@ -82,22 +94,13 @@ export default function LoginForm({
               required: "Password is required",
             }),
           }}
-          icon={
-            <Image
-              layout="fill"
-              objectFit="contain"
-              src="/icons/password.svg"
-              alt="password"
-              loading="eager"
-            />
-          }
         />
         <Button text="Login" />
         <p
-          onClick={onForgotPassword}
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && onForgotPassword()}
           aria-label="open reset password form"
+          tabIndex={0}
+          onClick={onForgotPassword}
+          onKeyDown={(e) => e.key === "Enter" && onForgotPassword()}
         >
           Forgot your password?
         </p>

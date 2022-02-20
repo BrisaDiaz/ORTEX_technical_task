@@ -1,13 +1,11 @@
 import React from "react";
-import styles from "./index.module.css";
 import Image from "next/image";
-import { CurrencyExchangeInfo } from "interfaces";
 
-export default function FloatingCurrencyRate({
-  data,
-}: {
-  data: CurrencyExchangeInfo | null;
-}) {
+import styles from "./index.module.css";
+
+import {CurrencyExchangeInfo} from "interfaces";
+
+export default function FloatingCurrencyRate({data}: {data: CurrencyExchangeInfo | null}) {
   const [currentDate, setCurrentDate] = React.useState(0);
   const [currentData, setCurrentData] = React.useState(data);
   React.useEffect(() => {
@@ -30,22 +28,16 @@ export default function FloatingCurrencyRate({
   return (
     <article
       arial-label={`${data?.from?.name} to ${data?.to?.name} currency exchange value`}
-      className={`${styles.floatingBox} ${
-        currentData.state === "down" ? styles.down : ""
-      }`}
+      className={`${styles.floatingBox} ${currentData.state === "down" ? styles.down : ""}`}
     >
       <time>{new Date(currentData?.lastUpdate).toLocaleString()}</time>
       <div className={styles.percentageChange}>
         <div className={styles.stateIcon}>
           <Image
-            layout="fill"
-            src={
-              currentData.state === "high"
-                ? "/icons/high.svg"
-                : "/icons/down.svg"
-            }
             alt={currentData?.state}
             aria-hidden={true}
+            layout="fill"
+            src={currentData.state === "high" ? "/icons/high.svg" : "/icons/down.svg"}
           />
         </div>
         <p>{currentData?.percentage}%</p>
@@ -57,9 +49,7 @@ export default function FloatingCurrencyRate({
       >
         {`1 ${data?.from?.currency}`}
         <b>=</b>
-        <span
-          className={currentData.state === "high" ? "primary" : "secondary"}
-        >
+        <span className={currentData.state === "high" ? "primary" : "secondary"}>
           {`${data?.exchange} ${data?.to?.currency}`}
         </span>
       </p>

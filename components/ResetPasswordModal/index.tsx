@@ -1,10 +1,13 @@
-import styles from "./index.module.css";
-import React, { FormEvent, useEffect } from "react";
-import Modal from "../Modal";
+import React from "react";
 import Image from "next/image";
+
+import Modal from "../Modal";
 import Input from "../Input";
 import Button from "../Button";
-import { EMAIL_PATTERN } from "@/utils/regex";
+
+import styles from "./index.module.css";
+
+import {EMAIL_PATTERN} from "@/utils/regex";
 import useForm from "@/hooks/useForm";
 export default function ResetPasswordModal({
   onSubmit,
@@ -12,26 +15,23 @@ export default function ResetPasswordModal({
   onClose,
 }: {
   onClose: () => void;
-  onSubmit: (formData: { [key: string]: any }) => void;
+  onSubmit: (formData: {[key: string]: string | FileList | string[]}) => void;
   isOpen: boolean;
 }) {
-  const { register, handleSubmit, errors } = useForm({
+  const {register, handleSubmit, errors} = useForm({
     onSubmit,
   });
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} aria-hidden={isOpen}>
-      <form
-        className={styles.content}
-        onSubmit={handleSubmit}
-        aria-label="reset password"
-      >
+    <Modal aria-hidden={isOpen} isOpen={isOpen} onClose={onClose}>
+      <form aria-label="reset password" className={styles.content} onSubmit={handleSubmit}>
         <h2>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 
         <Input
+          alertProps={{id: "email-address-error"}}
           errors={errors["emailAddress"]}
-          alertProps={{ id: "email-address-error" }}
+          icon={<Image alt="email" layout="fill" objectFit="contain" src="/icons/mail.svg" />}
           inputProps={{
             placeholder: "Email Address*",
             id: "emailAddress",
@@ -50,14 +50,6 @@ export default function ResetPasswordModal({
               required: "Email is required",
             }),
           }}
-          icon={
-            <Image
-              layout="fill"
-              src="/icons/mail.svg"
-              alt="email"
-              objectFit="contain"
-            />
-          }
         />
         <Button text="Submit" />
       </form>

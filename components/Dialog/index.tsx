@@ -1,4 +1,5 @@
 import Modal from "../Modal";
+
 import styles from "./index.module.css";
 export default function PopNotification({
   title,

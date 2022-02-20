@@ -1,15 +1,16 @@
-import styles from "./index.module.css";
 import Spinner from "../Spinner/index";
 
-export default function LoadingModal({ isLoading }: { isLoading: boolean }) {
+import styles from "./index.module.css";
+
+export default function LoadingModal({isLoading}: {isLoading: boolean}) {
   return (
     <aside
-      role="alert"
-      aria-hidden={isLoading}
-      aria-live="assertive"
-      aria-label="loading"
       aria-busy={isLoading}
+      aria-hidden={isLoading}
+      aria-label="loading"
+      aria-live="assertive"
       className={`${styles.modal} ${isLoading ? styles.openModal : ""}`}
+      role="alert"
     >
       <Spinner />
     </aside>
