@@ -46,7 +46,7 @@ Start the server
 
 ## Api endpoints
 
-Login: http://localhost:3000/api/login
+Login: http://localhost:3000/api/login  
 Reset password: http://localhost:3000/api/resetPassword
 
 - Error case user = unregistredUser@email.com
