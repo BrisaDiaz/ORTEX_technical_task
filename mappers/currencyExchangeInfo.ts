@@ -17,7 +17,7 @@ type Data = {
   type: string;
 };
 
-export const formatCurrencyRate = (data: Data) => {
+const mapCurrencyExchange = (data: Data) => {
   if (!data.pch || !data.price || !data.dt) return null;
 
   const from = data.topic.slice(0, 3);
@@ -37,3 +37,4 @@ export const formatCurrencyRate = (data: Data) => {
     lastUpdate: data.dt,
   };
 };
+export default mapCurrencyExchange;
