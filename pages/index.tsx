@@ -137,9 +137,10 @@ const Home: NextPage = () => {
         const formattedData = mapCurrencyExchangeInfo(
           data as SocketCurrencyExchangeResponse
         );
-        //// in case  the information about the latest price is not retrieved from for the websocket feed
-        //// the formattedData will be null and a loading indicator will be shown until the next sucessfull response
-        setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
+        //// in case  the information about the latest price is not retrieved from for the websocket feed all data will be displayed
+
+        formattedData &&
+          setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
       }
     };
     /// handle errors on connection

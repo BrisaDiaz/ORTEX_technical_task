@@ -48,19 +48,20 @@ export default function FloatingCurrencyRate({
             aria-hidden={true}
           />
         </div>
-        <p className={currentData.state === "high" ? "primary" : "secondary"}>
-          {currentData?.percentage}%
-        </p>
+        <p>{currentData?.percentage}%</p>
       </div>
 
       <p
-        className={currentData.state === "high" ? "primary" : "secondary"}
         aria-label={`1 ${data?.from?.name} equals ${data?.exchange}  ${data?.to?.name} `}
         title={`1 ${data?.from?.name} equals ${data?.exchange}  ${data?.to?.name} `}
       >
         {`1 ${data?.from?.currency}`}
         <b>=</b>
-        {`${data?.exchange} ${data?.to?.currency}`}
+        <span
+          className={currentData.state === "high" ? "primary" : "secondary"}
+        >
+          {`${data?.exchange} ${data?.to?.currency}`}
+        </span>
       </p>
     </article>
   );
