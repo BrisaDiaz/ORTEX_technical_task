@@ -16,13 +16,13 @@ https://ortex-login-task.vercel.app/
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/BrisaDiaz/ORTEX_technical_task.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd ORTEX_technical_task
 ```
 
 Install dependencies
