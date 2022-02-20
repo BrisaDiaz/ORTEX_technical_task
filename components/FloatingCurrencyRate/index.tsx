@@ -57,7 +57,11 @@ export default function FloatingCurrencyRate({
         className={currentData.state === "high" ? "primary" : "secondary"}
         aria-label={`1 ${data?.from?.name} equals ${data?.exchange}  ${data?.to?.name} `}
         title={`1 ${data?.from?.name} equals ${data?.exchange}  ${data?.to?.name} `}
-      >{`1 ${data?.from?.currency} = ${data?.exchange} ${data?.to?.currency}`}</p>
+      >
+        {`1 ${data?.from?.currency}`}
+        <b>=</b>
+        {`${data?.exchange} ${data?.to?.currency}`}
+      </p>
     </article>
   );
 }

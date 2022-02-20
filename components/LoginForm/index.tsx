@@ -21,12 +21,12 @@ export default function LoginForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.logo}>
         <Image
-          src="/ORTEX_logo.png"
+          src="/ORTEX_logo.webp"
           layout="fill"
           alt="ORTEX"
           loading="eager"
           placeholder="blur"
-          blurDataURL="/ORTEX_logo.png"
+          blurDataURL="/ORTEX_logo.webp"
         />
       </div>
       <section>

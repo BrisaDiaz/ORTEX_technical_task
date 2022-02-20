@@ -142,6 +142,9 @@ const Home: NextPage = () => {
         setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
       }
     };
+    /// handle errors on connection
+    socketConnection.onerror = (event) => {};
+    socketConnection.onclose = (event) => {};
   }, []);
 
   return (

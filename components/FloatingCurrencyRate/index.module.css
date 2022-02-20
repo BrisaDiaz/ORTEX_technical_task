@@ -1,20 +1,52 @@
-.floatingBox p {
+@keyframes infiniteSlide {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.floatingBox > * {
   margin: 0;
+  text-align: center;
+  min-width: max-content;
 }
 
 .floatingBox {
   text-align: end;
   position: relative;
+  font-weight: 100;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   z-index: 50;
   padding: 0.5rem 1rem;
+  animation: infiniteSlide 3s linear infinite;
 }
-
+.floatingBox time {
+  min-width: min-content;
+  max-width: min-content;
+  font-size: 12px;
+}
+.floatingBox p {
+  font-size: 16px;
+}
 .floatingBox .percentageChange {
   display: flex;
-  gap: 0.5rem;
+
   align-items: center;
   justify-content: flex-end;
-  max-height: 2rem;
+
+  line-height: 1;
+  font-size: 20px;
   margin: 0 0;
 }
 .floatingBox .percentageChange .stateIcon {
@@ -24,22 +56,27 @@
   margin-top: 2px;
 }
 .floatingBox .percentageChange p {
-  font-weight: 600;
-  font-size: 20px;
   margin: 0;
   letter-spacing: 1px;
+  font-weight: 500;
 }
-.floatingBox p {
-  font-size: 12px;
-  font-weight: 600;
+.floatingBox b {
+  margin: 0 5px;
 }
-.floatingBox time {
-  font-size: 10px;
-}
-@media (min-width: 700px) {
+@media (min-width: 600px) {
   .floatingBox {
-    padding: 8px 16px;
-    transform: scale(1.2);
-    margin: 0 20px;
+    margin: initial;
+    animation: infiniteSlide 6s linear infinite;
+  }
+}
+@media (min-width: 1024px) {
+  .floatingBox {
+    background: rgba(0, 0, 0, 0.852);
+    animation: bite 3s linear infinite;
+  }
+
+  .floatingBox b {
+    display: block;
+    line-height: 0.8;
   }
 }

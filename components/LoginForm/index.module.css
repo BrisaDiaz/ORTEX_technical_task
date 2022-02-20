@@ -7,7 +7,7 @@
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   box-shadow: var(--box-shadow);
-  padding: 40px 24px;
+  padding: 40px 24px 15px;
 
   position: relative;
   bottom: 0;
@@ -46,6 +46,5 @@
   .form .logo {
     width: 170px;
     height: 100px;
-    margin-bottom: 60px;
   }
 }

@@ -6,15 +6,15 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  padding-top: 110px;
+  padding-top: 70px;
 }
 .currencySection {
-  min-height: 90px;
-
+  width: 100%;
   position: absolute;
   z-index: 20;
   top: 0;
   right: 0;
+  background: #e6e6e612;
 }
 .formSection {
   margin-top: auto;
@@ -65,9 +65,5 @@
 
     z-index: 10;
     top: 0;
-  }
-  .currencySection > article {
-    background: rgb(0 0 0 / 85%);
-    border: 2px solid;
   }
 }
