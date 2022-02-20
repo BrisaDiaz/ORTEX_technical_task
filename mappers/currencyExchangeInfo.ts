@@ -1,23 +1,7 @@
 import getCurrencyName from "@/utils/getCurrencyName";
-type Data = {
-  ask: undefined | number;
-  bid: number;
-  dhigh: number;
-  dlow: number;
-  dt: undefined | number;
-  i: string;
-  nch: number;
-  o: number;
-  pch: undefined | number;
-  prev: number;
-  price: number;
-  s: string;
-  state: string;
-  topic: string;
-  type: string;
-};
+import { SocketCurrencyExchangeResponse } from "interfaces";
 
-const mapCurrencyExchange = (data: Data) => {
+const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
   if (!data.pch || !data.price || !data.dt) return null;
 
   const from = data.topic.slice(0, 3);

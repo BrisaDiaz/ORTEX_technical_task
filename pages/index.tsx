@@ -7,7 +7,10 @@ import FloatingCurrencyRate from "@/components/FloatingCurrencyRate";
 import LoginForm from "@/components/LoginForm";
 import LoadingModal from "@/components/LoadingModal";
 import PopNotification from "@/components/Dialog";
-import { CurrencyExchangeInfo } from "interfaces";
+import {
+  CurrencyExchangeInfo,
+  SocketCurrencyExchangeResponse,
+} from "interfaces";
 import mapCurrencyExchangeInfo from "@/mappers/currencyExchangeInfo";
 import { env } from "env";
 const Home: NextPage = () => {
@@ -131,10 +134,12 @@ const Home: NextPage = () => {
       const data = JSON.parse(message.data);
 
       if (data.topic === "EURUSD") {
-        const formattedData = mapCurrencyExchangeInfo(data);
+        const formattedData = mapCurrencyExchangeInfo(
+          data as SocketCurrencyExchangeResponse
+        );
         //// in case  the information about the latest price is not retrieved from for the websocket feed
         //// the formattedData will be null and a loading indicator will be shown until the next sucessfull response
-        setEURUSDMarketPrice(formattedData);
+        setEURUSDMarketPrice(formattedData as CurrencyExchangeInfo);
       }
     };
   }, []);
