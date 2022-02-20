@@ -10,13 +10,17 @@
   overflow: hidden;
   transition: all 0.5s ease-in-out;
 }
+
 .openModal {
   top: 0;
+}
+.modal article {
+  box-shadow: var(--box-shadow);
 }
 .modalHeader {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
-  background-color: var(--black-light);
+  background-color: var(--bg-light);
   padding: 20px 15px;
 }
 .closeBtn {
@@ -57,7 +61,7 @@
   top: 40%;
   right: 50%;
   transform: translate(50%, -50%);
-  background: var(--black);
+  background: var(--bg);
   overflow-y: auto;
   overflow-x: hidden;
   transition: all 0.5s ease-in-out;

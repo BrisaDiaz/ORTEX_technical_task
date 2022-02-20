@@ -10,7 +10,7 @@
 }
 .currencySection {
   min-height: 90px;
-  padding: 0 8px;
+
   position: absolute;
   z-index: 20;
   top: 0;
@@ -32,7 +32,7 @@
   }
 
   .formSection {
-    max-width: 50%;
+    max-width: 40%;
 
     order: 1;
     width: 100%;
@@ -47,5 +47,27 @@
     min-width: 300px;
     justify-content: center;
     align-items: center;
+    right: 0;
+    background: url(https://lh3.googleusercontent.com/_xEQMPELdrHo-5TrqtVT1buRqZkf85vgmRdEjqbYs3wg55Y2I6M06gAtw2I1KVquHPUPtrQOa7ZCbzpHAia9uiOyS5npSPXOk3W8ucI);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .currencySection::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(8, 17, 20, 0) 0%,
+      rgba(8, 17, 20, 1) 100%
+    );
+
+    z-index: 10;
+    top: 0;
+  }
+  .currencySection > article {
+    background: rgb(0 0 0 / 85%);
+    border: 2px solid;
   }
 }

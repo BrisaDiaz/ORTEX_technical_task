@@ -7,7 +7,8 @@ import FloatingCurrencyRate from "@/components/FloatingCurrencyRate";
 import LoginForm from "@/components/LoginForm";
 import LoadingModal from "@/components/LoadingModal";
 import PopNotification from "@/components/Dialog";
-import { formatCurrencyRate } from "@/utils/formatCurrencyRate";
+import { CurrencyExchangeInfo } from "interfaces";
+import mapCurrencyExchangeInfo from "@/mappers/currencyExchangeInfo";
 import { env } from "env";
 const Home: NextPage = () => {
   const [pageState, setPageState] = React.useState<{
@@ -18,7 +19,8 @@ const Home: NextPage = () => {
     notification: { title: "", message: "" },
   });
 
-  const [EURUSDMarketPrice, setEURUSDMarketPrice] = React.useState<any>(null);
+  const [EURUSDMarketPrice, setEURUSDMarketPrice] =
+    React.useState<null | CurrencyExchangeInfo>(null);
   const [modalState, setModalState] = React.useState<{
     isOpen: boolean;
   }>({
@@ -45,7 +47,9 @@ const Home: NextPage = () => {
     }, timeout || 0);
   };
 
-  const handleResetPassword = async (formData: { [key: string]: string }) => {
+  const handleResetPassword = async (formData: {
+    [emailAddress: string]: string;
+  }) => {
     handleCloseModal();
     setPageState({
       ...pageState,
@@ -56,7 +60,7 @@ const Home: NextPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ email: formData.emailAddress }),
     });
 
     const data = await response.json();
@@ -127,7 +131,7 @@ const Home: NextPage = () => {
       const data = JSON.parse(message.data);
 
       if (data.topic === "EURUSD") {
-        const formattedData = formatCurrencyRate(data);
+        const formattedData = mapCurrencyExchangeInfo(data);
         //// in case  the information about the latest price is not retrieved from for the websocket feed
         //// the formattedData will be null and a loading indicator will be shown until the next sucessfull response
         setEURUSDMarketPrice(formattedData);

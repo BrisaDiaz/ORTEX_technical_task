@@ -4,6 +4,9 @@
 
 .floatingBox {
   text-align: end;
+  position: relative;
+  z-index: 50;
+  padding: 0.5rem 1rem;
 }
 
 .floatingBox .percentageChange {
@@ -30,19 +33,13 @@
   font-size: 12px;
   font-weight: 600;
 }
-.floatingBox small {
+.floatingBox time {
   font-size: 10px;
 }
 @media (min-width: 700px) {
   .floatingBox {
-    padding: 16px;
-
+    padding: 8px 16px;
     transform: scale(1.2);
     margin: 0 20px;
-  }
-}
-@media (min-width: 1000px) {
-  .floatingBox {
-    transform: scale(1.5);
   }
 }

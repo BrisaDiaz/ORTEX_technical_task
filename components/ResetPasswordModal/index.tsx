@@ -20,21 +20,29 @@ export default function ResetPasswordModal({
   });
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      aria-hidden={isOpen}
-      aria-labelledby="reset password"
-    >
-      <form className={styles.content} onSubmit={handleSubmit}>
+    <Modal isOpen={isOpen} onClose={onClose} aria-hidden={isOpen}>
+      <form
+        className={styles.content}
+        onSubmit={handleSubmit}
+        aria-label="reset password"
+      >
         <h2>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 
         <Input
-          type="text"
-          errors={errors["email"]}
-          register={{
-            ...register("email", {
+          errors={errors["emailAddress"]}
+          alertProps={{ id: "email-address-error" }}
+          inputProps={{
+            placeholder: "Email Address*",
+            id: "emailAddress",
+            type: "text",
+            "aria-label": "email address",
+            "aria-required": true,
+            autoFocus: true,
+            autoComplete: "emailAddress",
+            "aria-invalid": errors["emailAddress"]?.length ? true : false,
+            "aria-describedby": "email-address-error",
+            ...register("emailAddress", {
               pattern: {
                 value: EMAIL_PATTERN,
                 message: "Please insert a valid email",
@@ -42,7 +50,6 @@ export default function ResetPasswordModal({
               required: "Email is required",
             }),
           }}
-          placeholder="Email"
           icon={
             <Image
               layout="fill"

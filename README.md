@@ -59,7 +59,7 @@ No additional libraries
 ## Features
 
 - Customizable form with validation.
-- Accessible modals.
+- Accessibility.
 - Push notification.
 - Loading indicators.
 - Websocket feed with the latest EUR/USD exchange rate.
@@ -71,7 +71,9 @@ No additional libraries
 │ └── Component  
 │ ├── index.tsx (Functional component)  
 │ └── index.module.css (Component styles)  
+├── interfaces (common typescript interfaces)  
 ├── hooks (Custom hooks)  
 ├── styles (Pages level styles)  
 ├── public (Static assets)  
-└──utils (Utility functions and const)
+├── mappers (data mappers)  
+└──utils (Utility snippets)

@@ -7,10 +7,12 @@ export default function Modal({
   onClose,
   isOpen,
   children,
+  role,
 }: {
   onClose: () => void;
   isOpen: boolean;
   children: React.ReactNode;
+  role?: string;
 }) {
   const [isInteracting, setisInteracting] = React.useState<boolean>(false);
   const modalRef = React.useRef(null) as
@@ -27,9 +29,9 @@ export default function Modal({
   });
   return (
     <aside
+      aria-hidden={isOpen}
       ref={modalRef}
       tabIndex={tabIndex}
-      role="dialog"
       className={`${styles.modal} ${isOpen ? styles.openModal : ""}`}
       onClick={() => handleModalInteraction()}
     >
@@ -38,6 +40,7 @@ export default function Modal({
         onMouseEnter={() => setisInteracting(true)}
         onTouchStart={() => setisInteracting(true)}
         onMouseLeave={() => setisInteracting(false)}
+        role={role || "dialog"}
       >
         <div className={styles.modalHeader}>
           <div className={styles.closeBtn}>

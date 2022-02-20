@@ -3,7 +3,13 @@ import Spinner from "../Spinner/index";
 
 export default function LoadingModal({ isLoading }: { isLoading: boolean }) {
   return (
-    <aside className={`${styles.modal} ${isLoading ? styles.openModal : ""}`}>
+    <aside
+      role="alert"
+      aria-hidden={isLoading}
+      aria-live="assertive"
+      aria-busy={isLoading}
+      className={`${styles.modal} ${isLoading ? styles.openModal : ""}`}
+    >
       <Spinner />
     </aside>
   );

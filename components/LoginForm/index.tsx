@@ -31,11 +31,18 @@ export default function LoginForm({
       </div>
       <section>
         <Input
-          type="text"
-          placeholder="Email"
-          autoFocus={true}
           errors={errors["email"]}
-          register={{
+          alertProps={{ id: "email-error" }}
+          inputProps={{
+            placeholder: "Email*",
+            id: "email",
+            type: "text",
+            "aria-label": "email",
+            "aria-required": true,
+            autoFocus: true,
+            autoComplete: "email",
+            "aria-invalid": errors["email"]?.length ? true : false,
+            "aria-describedby": "email-error",
             ...register("email", {
               pattern: {
                 value: EMAIL_PATTERN,
@@ -56,13 +63,21 @@ export default function LoginForm({
         />
         <Input
           errors={errors["password"]}
-          type="password"
-          placeholder="Password"
-          register={{
+          alertProps={{ id: "password-error" }}
+          inputProps={{
+            placeholder: "Password*",
+            id: "password",
+            type: "password",
+
+            "aria-label": "password",
+            "aria-required": true,
+            autoComplete: "password",
+            "aria-invalid": errors["password"]?.length ? true : false,
+            "aria-describedby": "password-error",
             ...register("password", {
               pattern: {
                 value: PASSWORD_PATTERN,
-                message: "Insecure password. Example: MylongP@ssword8",
+                message: "Insecure password. Example: MyLongP@ssword8",
               },
               required: "Password is required",
             }),
