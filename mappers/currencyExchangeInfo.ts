@@ -22,4 +22,5 @@ const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
     lastUpdate: data.dt,
   };
 };
+
 export default mapCurrencyExchange;
