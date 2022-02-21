@@ -16,13 +16,13 @@ https://ortex-login-task.vercel.app/
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/BrisaDiaz/ORTEX_technical_task.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd ORTEX_technical_task
 ```
 
 Install dependencies
@@ -46,7 +46,7 @@ Start the server
 
 ## Api endpoints
 
-Login: http://localhost:3000/api/login
+Login: http://localhost:3000/api/login  
 Reset password: http://localhost:3000/api/resetPassword
 
 - Error case user = unregistredUser@email.com
@@ -69,11 +69,11 @@ Next js (React)
 ## Folder structure
 
 .  
-├── components (Components folder)  
-├── interfaces.ts (common typescript interfaces)  
-├── lighthouserc.js (lighthous config)
-├── hooks (Custom hooks)  
-├── styles (Pages level styles)  
-├── public (Static assets)  
-├── mappers (data mappers)  
-└──utils (Utility snippets)
+├── components (components folder)    
+├── interfaces.ts (common typescript interfaces)    
+├── lighthouserc.js (lighthous config)  
+├── hooks (Custom hooks)    
+├── styles (Pages level styles)    
+├── public (Static assets)    
+├── mappers (data mappers)    
+└── utils (utility snippets)  
