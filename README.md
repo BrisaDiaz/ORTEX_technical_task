@@ -4,10 +4,10 @@ https://ortex-login-task.vercel.app/
 
 ## Screenshots
 
-![image](https://res.cloudinary.com/myproyects/image/upload/v1645383079/proyects/all-screens-min_ooige0.webp)
-![image](https://res.cloudinary.com/myproyects/image/upload/v1645383082/proyects/descktop-min_qeev0a.webp)
-![image](https://res.cloudinary.com/myproyects/image/upload/v1645383078/proyects/mobile-min_fo6pxo.webp)
-![image](https://res.cloudinary.com/myproyects/image/upload/v1645383077/proyects/tablet-min_rxncei.webp)
+
+![Alt screenshot](https://res.cloudinary.com/myproyects/image/upload/v1645412601/proyects/gif_myouif.gif)
+
+
 
 ![image](https://res.cloudinary.com/myproyects/image/upload/v1645383078/proyects/lighthouse-min_omekxw.webp)
 
@@ -66,7 +66,7 @@ Cypress
 - Accessible components.
 - Push notification.
 - Loading indicators.
-- Websocket feed with the latest EUR/USD exchange rate.
+- Websocket connection.
 
 ## Folder structure
 
