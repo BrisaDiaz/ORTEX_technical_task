@@ -16,7 +16,8 @@ const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
       name: getCurrencyName(from),
     },
     to: {
-      currency: getCurrencyName(to),
+      currency: to,
+      name: getCurrencyName(to),
     },
     lastUpdate: data.dt,
   };
