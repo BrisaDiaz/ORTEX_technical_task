@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-import styles from "./index.module.css";
-
 import useModalFocus from "@/hooks/useModalFocus";
+
+import styles from "./index.module.css";
 
 export default function Modal({
   onClose,
@@ -31,7 +31,7 @@ export default function Modal({
   return (
     <aside
       ref={modalRef}
-      aria-hidden={isOpen}
+      aria-hidden={!isOpen}
       className={`${styles.modal} ${isOpen ? styles.openModal : ""}`}
       tabIndex={tabIndex}
       onClick={() => handleModalInteraction()}

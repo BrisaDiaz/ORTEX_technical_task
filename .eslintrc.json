@@ -1,12 +1,29 @@
 {
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["cypress", "@typescript-eslint", "prettier"],
 
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
     "plugin:prettier/recommended"
   ],
+  "env": {
+    "cypress/globals": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
   "rules": {
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error",
     "no-console": "warn",
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
@@ -21,7 +38,7 @@
         "singleQuote": false,
         "bracketSpacing": false,
         "arrowParens": "always",
-        "endOfLine":"auto"
+        "endOfLine": "auto"
       }
     ],
     "@typescript-eslint/no-unused-vars": [
@@ -32,15 +49,29 @@
         "argsIgnorePattern": "^_.*?$"
       }
     ],
-    "import/order": ["warn", {
-      "groups": ["type", "builtin", "object", "external", "internal", "parent", "sibling", "index"],
-      "pathGroups": [{
-        "pattern": "~/**",
-        "group": "external",
-        "position": "after"
-      }],
-      "newlines-between": "always"
-    }],
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "type",
+          "builtin",
+          "object",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "~/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always"
+      }
+    ],
     "react/self-closing-comp": "warn",
     "react/jsx-sort-props": [
       "warn",
@@ -53,9 +84,13 @@
     ],
     "padding-line-between-statements": [
       "warn",
-      {"blankLine": "always", "prev": "*", "next": "return"},
-      {"blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
-      {"blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"]}
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
     ]
   }
 }

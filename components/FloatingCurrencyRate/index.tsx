@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-import styles from "./index.module.css";
-
 import {CurrencyExchangeInfo} from "interfaces";
+
+import styles from "./index.module.css";
 
 export default function FloatingCurrencyRate({data}: {data: CurrencyExchangeInfo | null}) {
   const [currentDate, setCurrentDate] = React.useState(0);

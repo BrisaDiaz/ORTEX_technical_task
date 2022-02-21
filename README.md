@@ -56,10 +56,12 @@ Reset password: http://localhost:3000/api/resetPassword
 ## libraries
 
 Next js (React)
+Cypress
 
 ## Features
 
 - Lighthouse github pipeline.
+- Integration tests.
 - Customizable form with validation.
 - Accessible components.
 - Push notification.
@@ -69,11 +71,13 @@ Next js (React)
 ## Folder structure
 
 .  
-├── components (components folder)    
-├── interfaces.ts (common typescript interfaces)    
+├── components (components folder)  
+├── interfaces.ts (common typescript interfaces)  
 ├── lighthouserc.js (lighthous config)  
-├── hooks (Custom hooks)    
-├── styles (Pages level styles)    
-├── public (Static assets)    
-├── mappers (data mappers)    
-└── utils (utility snippets)  
+├── cypress (integration tests)  
+├── hooks (custom hooks)  
+├── styles (pages level styles)  
+├── public (static assets)  
+├── mappers (data mappers)  
+├── .github (workflows)  
+└── utils (utility snippets)
