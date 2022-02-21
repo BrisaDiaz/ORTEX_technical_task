@@ -1,5 +1,5 @@
 import getCurrencyName from "@/utils/getCurrencyName";
-import { SocketCurrencyExchangeResponse } from "interfaces";
+import {SocketCurrencyExchangeResponse} from "interfaces";
 
 const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
   if (!data.pch || !data.price || !data.dt) return null;
