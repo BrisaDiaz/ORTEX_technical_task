@@ -1,8 +1,10 @@
-name: End-to-end tests
+name: Cypress Tests
+
 on: [push]
+
 jobs:
   cypress-run:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -10,7 +12,6 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
-         with:
+        with:
           build: npm run build
           start: npm start
-          wait-on: http://localhost:3000
