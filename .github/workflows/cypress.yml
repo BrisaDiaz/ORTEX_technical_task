@@ -10,7 +10,7 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
-      - run: npm install 
-    - run: npm run build
-    - run: npm start & npx wait-on http://localhost:3000
-    - run: npm integration
+         with:
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:3000
