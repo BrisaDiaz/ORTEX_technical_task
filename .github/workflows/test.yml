@@ -4,10 +4,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-       - name: Checkout
-        uses: actions/checkout@v2
-        - name: Run tests
-        uses: cypress-io/github-action@v2
-         run: |
-                 npm install
-                  npx jest
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npx jest *.test.*
