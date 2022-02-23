@@ -1,12 +1,5 @@
 name: Unit Tests
-
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: [master]
-
+on: [push]
 jobs:
   Jest:
     runs-on: ubuntu-latest
