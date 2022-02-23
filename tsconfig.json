@@ -6,10 +6,11 @@
       "@/components/*": ["components/*"],
       "@/hooks/*": ["hooks/*"],
       "@/utils/*": ["utils/*"],
-      "@/mappers/*": ["mappers/*"]
+      "@/mappers/*": ["mappers/*"],
+      "@/mocks/*": ["__mocks__/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["cypress"],
+    "types": ["cypress", "node", "jest", "@testing-library/jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,

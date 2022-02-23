@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { EMAIL_PATTERN, PASSWORD_PATTERN } from "@/utils/regex";
+import {EMAIL_PATTERN, PASSWORD_PATTERN} from "@/utils/regex";
 import useForm from "@/hooks/useForm";
 
 import Input from "../Input/index";
@@ -13,9 +13,9 @@ export default function LoginForm({
   onSubmit,
 }: {
   onForgotPassword: () => void;
-  onSubmit: (formData: { [key: string]: string | FileList | string[] }) => void;
+  onSubmit: (formData: {[key: string]: string | FileList | string[]}) => void;
 }) {
-  const { register, handleSubmit, errors } = useForm({
+  const {register, handleSubmit, errors} = useForm({
     onSubmit,
   });
 
@@ -33,7 +33,7 @@ export default function LoginForm({
       </div>
       <section>
         <Input
-          alertProps={{ id: "email-error" }}
+          alertProps={{id: "email-error"}}
           errors={errors["email"]}
           icon={
             <Image
@@ -64,7 +64,7 @@ export default function LoginForm({
           }}
         />
         <Input
-          alertProps={{ id: "password-error" }}
+          alertProps={{id: "password-error"}}
           errors={errors["password"]}
           icon={
             <Image

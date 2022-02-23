@@ -10,10 +10,10 @@ export interface CurrencyExchangeInfo {
     currency: string;
     name: string;
   };
-  lastUpdate: number;
+  lastUpdate: string;
 }
 
-export interface SocketCurrencyExchangeResponse {
+export interface CurrencyExchangeSubscriptionMessage {
   ask: undefined | number;
   bid: number;
   dhigh: number;
@@ -24,7 +24,7 @@ export interface SocketCurrencyExchangeResponse {
   o: number;
   pch: undefined | number;
   prev: number;
-  price: number;
+  price: undefined | number;
   s: string;
   state: string;
   topic: string;

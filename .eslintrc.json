@@ -1,10 +1,18 @@
 {
-  "plugins": ["cypress", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "cypress",
+    "@typescript-eslint",
+    "jest-dom",
+    "testing-library",
+    "prettier"
+  ],
 
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
     "plugin:prettier/recommended"
   ],
   "env": {
@@ -17,6 +25,16 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
   "rules": {
     "cypress/no-assigning-return-values": "error",
     "cypress/no-unnecessary-waiting": "error",
@@ -28,6 +46,7 @@
     "react/prop-types": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "testing-library/no-node-access": "off",
     "prettier/prettier": [
       "warn",
       {

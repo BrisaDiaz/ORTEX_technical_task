@@ -1,7 +1,7 @@
 import getCurrencyName from "@/utils/getCurrencyName";
-import {SocketCurrencyExchangeResponse} from "interfaces";
+import { CurrencyExchangeSubscriptionMessage } from "interfaces";
 
-const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
+const mapCurrencyExchange = (data: CurrencyExchangeSubscriptionMessage) => {
   if (!data.pch || !data.price || !data.dt) return null;
 
   const from = data.topic.slice(0, 3);
@@ -19,7 +19,7 @@ const mapCurrencyExchange = (data: SocketCurrencyExchangeResponse) => {
       currency: to,
       name: getCurrencyName(to),
     },
-    lastUpdate: data.dt,
+    lastUpdate: new Date(data.dt).toLocaleString(),
   };
 };
 

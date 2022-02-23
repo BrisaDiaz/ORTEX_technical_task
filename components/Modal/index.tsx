@@ -33,19 +33,19 @@ export default function Modal({
       ref={modalRef}
       aria-hidden={!isOpen}
       className={`${styles.modal} ${isOpen ? styles.openModal : ""}`}
+      role={role || "dialog"}
       tabIndex={tabIndex}
       onClick={() => handleModalInteraction()}
     >
       <article
         className={styles.contentWrapper}
-        role={role || "dialog"}
         onMouseEnter={() => setisInteracting(true)}
         onMouseLeave={() => setisInteracting(false)}
         onTouchStart={() => setisInteracting(true)}
       >
         <div className={styles.modalHeader}>
           <div className={styles.closeBtn}>
-            <button aria-label="close" onClick={onClose} />
+            <button aria-label="close" name="close" onClick={onClose} />
             <Image alt="" layout="fill" objectFit="contain" src="/icons/close-x.svg" />
           </div>
         </div>
