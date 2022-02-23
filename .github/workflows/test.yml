@@ -1,18 +1,9 @@
-name: Unit Tests
+name: unit tests
 on: [push]
 jobs:
-  Jest:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-   - name: Install dependencies
-       run: npm install
-   - name: Linting
-      run: npm run lint
-   - name: Linting
-     run: npm run test:ci
-   - name: Build
-     run: npm run build
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npx jest
