@@ -10,11 +10,14 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "plugin:cypress/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
+    "plugin:cypress/recommended",
     "plugin:prettier/recommended"
   ],
+  "globals": {
+    "cy": true
+  },
   "env": {
     "cypress/globals": true
   },
