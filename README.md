@@ -1,17 +1,18 @@
-## Demo
+## <span style="color: #33afaa"> ORTEX</span> Technical task for Front-End Developer
 
-https://ortex-login-task.vercel.app/
+- <a href="https://public.ortex.com/wp-content/uploads/2020/12/TechnicalTask.pdf" target="_blank">Requirements</a>
 
-## Screenshots
+- <a href="https://ortex-login-task.vercel.app" target="_blank">Demo</a>
 
+- <a href="https://www.linkedin.com/in/brisa-d%C3%ADaz/" target="_blank">Repository Author</a>
+
+## 📸 Screenshots
 
 ![Alt screenshot](https://res.cloudinary.com/myproyects/image/upload/v1645412601/proyects/gif_myouif.gif)
 
-
-
 ![image](https://res.cloudinary.com/myproyects/image/upload/v1645383078/proyects/lighthouse-min_omekxw.webp)
 
-## Run Locally
+## 💻 Run Locally
 
 Clone the project
 
@@ -44,31 +45,36 @@ Start the server
 
 ```
 
-## Api endpoints
+## 🔮 Api endpoints
 
-Login: http://localhost:3000/api/login  
-Reset password: http://localhost:3000/api/resetPassword
+- Login: http://localhost:3000/api/login
 
-- Error case user = unregistredUser@email.com
+- Reset password: http://localhost:3000/api/resetPassword
 
-- Success case user = any other valid email
+### 🧪 Testing credentials
 
-## libraries
+- Error case user: unregistredUser@email.com
+- Success case user: any other valid email
 
-Next js (React)
-Cypress
+## 🛠 libraries
 
-## Features
+- Next js (React)
+- Cypress
+- Jest
+- React Testing library
+
+## ✨ Features
 
 - Lighthouse github pipeline.
 - Integration tests.
+- Unit tests.
 - Customizable form with validation.
 - Accessible components.
 - Push notification.
 - Loading indicators.
 - Websocket connection.
 
-## Folder structure
+## 📂 Folder structure
 
 .  
 ├── components (components folder)  
