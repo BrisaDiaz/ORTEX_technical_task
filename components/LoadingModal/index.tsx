@@ -9,7 +9,7 @@ export default function LoadingModal({isLoading}: {isLoading: boolean}) {
       aria-hidden={!isLoading}
       aria-label="loading"
       aria-live="assertive"
-      className={`${styles.modal} ${isLoading ? styles.openModal : ""}`}
+      className={`${styles.modal} ${isLoading ? styles["modal--open"] : ""}`}
       role="alert"
     >
       <Spinner />

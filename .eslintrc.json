@@ -9,10 +9,10 @@
 
   "extends": [
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
     "plugin:cypress/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
   "globals": {
@@ -28,6 +28,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
+
   "overrides": [
     // Only uses Testing Library lint rules in test files
     {

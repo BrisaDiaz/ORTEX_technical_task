@@ -1,14 +1,14 @@
-.content {
+.notification {
   text-align: center;
 
   width: 100%;
   padding: 20px;
 }
-.content h2 {
+.notification__title {
   margin-top: 0;
 }
 @media (min-width: 700px) {
-  .content {
+  .notification {
     text-align: center;
     max-width: 500px;
     padding: 30px;

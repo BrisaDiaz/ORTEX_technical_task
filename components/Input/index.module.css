@@ -1,9 +1,9 @@
-.inputWrapper {
+.input-container {
   position: relative;
   background: transparent;
 }
 
-.inputWrapper input {
+.input-container__input {
   -webkit-appearance: none !important;
   width: 100%;
   padding: 14px 45px;
@@ -15,7 +15,7 @@
   color: var(--black-light);
   margin: 1rem 0;
 }
-.inputWrapper [role="alert"] {
+.input-container__message {
   position: absolute;
   left: 2px;
   top: -8px;
@@ -23,21 +23,19 @@
   color: var(--secondary);
 }
 
-.inputWrapper input:focus {
+.input-container__input:focus {
   outline-color: var(--primary);
   outline-offset: 4px;
   outline-width: 1px;
 }
-.withError input {
+.input-container__input--invalid {
   border: 2px solid var(--secondary);
 }
-.withError [role="alert"] {
+.input-container__message--visible {
   display: block;
 }
-.inputWrapper input:-moz-focusring {
-  color: transparent;
-}
-.inputIcon {
+
+.input-container__icon-container {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -48,15 +46,15 @@
   pointer-events: none;
   user-select: none;
 }
-.inputIcon span {
+.input-container__icon-container span {
   max-width: 20px;
 }
-.inputIcon span img {
+.input-container__icon-container span img {
   pointer-events: none;
   user-select: none;
 }
 @media (min-width: 500px) {
-  .inputWrapper input {
+  .input-container__input {
     padding: 16px 45px;
   }
 }

@@ -1,8 +1,8 @@
 /* eslint testing-library/no-node-access: 0 */
 
 import React from "react";
-import { expect } from "@jest/globals";
-import { render, screen, cleanup } from "@testing-library/react";
+import {expect} from "@jest/globals";
+import {render, screen, cleanup} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Component from "./index";
@@ -17,7 +17,7 @@ it("display content correctly when open", () => {
   render(
     <Component {...props} isOpen={true}>
       <h2>Modal title</h2>
-    </Component>
+    </Component>,
   );
   expect(screen.getByText("Modal title"));
 });
@@ -25,7 +25,7 @@ it("is hidden when modal is close", () => {
   render(
     <Component {...props} isOpen={false}>
       <h2>Modal title</h2>
-    </Component>
+    </Component>,
   );
 
   const modal = screen.getByText("Modal title")?.parentNode?.parentNode;
@@ -36,9 +36,9 @@ it("trigger close when clicking close button", () => {
   render(
     <Component {...props} isOpen={true}>
       <h2>Modal title</h2>
-    </Component>
+    </Component>,
   );
-  const closeBtn = screen.getByRole("button", { name: "close" });
+  const closeBtn = screen.getByRole("button", {name: "close"});
 
   expect(props.onClose.mock.calls.length).toBe(0);
   userEvent.click(closeBtn);
@@ -48,7 +48,7 @@ it("trigger close when pressing Escape", () => {
   render(
     <Component {...props} isOpen={true}>
       <h2>Modal title</h2>
-    </Component>
+    </Component>,
   );
 
   userEvent.keyboard("Escape");
@@ -61,9 +61,9 @@ it("kip focus inside modal when user press tab", () => {
         <input name="email" placeholder="email" />
         <input name="password" placeholder="password" />{" "}
       </>
-    </Component>
+    </Component>,
   );
-  const closeBtn = screen.getByRole("button", { name: "close" });
+  const closeBtn = screen.getByRole("button", {name: "close"});
   const emailInput = screen.getByPlaceholderText("email");
   const passwordInput = screen.getByPlaceholderText("password");
 

@@ -17,12 +17,24 @@ function Input({
   };
 }) {
   return (
-    <div className={`${styles.inputWrapper} ${errors?.length ? styles.withError : ""}`}>
-      <small className={styles.errorMessage} role="alert" {...alertProps}>
+    <div className={styles["input-container"]}>
+      <small
+        className={`${styles["input-container__message"]} ${
+          errors?.length ? styles["input-container__message--visible"] : ""
+        }`}
+        role="alert"
+        {...alertProps}
+      >
         {errors && errors?.length ? errors[errors?.length - 1] : ""}
       </small>
-      <div className={styles.inputIcon}>{icon}</div>
-      <input {...inputProps} onSubmit={(e) => console.log(e)} />
+      <div className={styles["input-container__icon-container"]}>{icon}</div>
+      <input
+        className={`${styles["input-container__input"]} ${
+          errors?.length ? styles["input-container__input--invalid"] : ""
+        }`}
+        {...inputProps}
+        onSubmit={(e) => console.log(e)}
+      />
     </div>
   );
 }

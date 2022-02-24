@@ -14,8 +14,8 @@ export default function PopNotification({
 }) {
   return (
     <Modal isOpen={isOpen} role="alert" onClose={onClose}>
-      <div className={styles.content} test-id="notification">
-        <h2>{title}</h2>
+      <div className={styles.notification} test-id="notification">
+        <h2 className={styles["notification__title"]}>{title}</h2>
         {message && <p>{message}</p>}
       </div>
     </Modal>

@@ -21,7 +21,7 @@ export default function LoginForm({
 
   return (
     <form className={styles.form} name="login" onSubmit={handleSubmit}>
-      <div className={styles.logo}>
+      <div className={styles["form__logo"]}>
         <Image
           alt="ORTEX"
           blurDataURL="/ORTEX_logo.webp"
@@ -31,7 +31,7 @@ export default function LoginForm({
           src="/ORTEX_logo.webp"
         />
       </div>
-      <section>
+      <section className={styles["form__content"]}>
         <Input
           alertProps={{id: "email-error"}}
           errors={errors["email"]}
@@ -94,9 +94,10 @@ export default function LoginForm({
             }),
           }}
         />
-        <Button text="Login" />
+        <Button className={styles["form__button"]} text="Login" />
         <p
           aria-label="open reset password form"
+          className={styles["form__text"]}
           tabIndex={0}
           onClick={onForgotPassword}
           onKeyDown={(e) => e.key === "Enter" && onForgotPassword()}

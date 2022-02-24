@@ -1,6 +1,6 @@
 @keyframes infiniteSlide {
   0% {
-    left: -50%;
+    left: -25%;
     opacity: 0;
   }
   10% {
@@ -29,13 +29,14 @@
     transform: translateY(0);
   }
 }
-.floatingBox > * {
+.currency-box > * {
   margin: 0;
   text-align: center;
   min-width: max-content;
+  font-size: 16px;
 }
 
-.floatingBox {
+.currency-box {
   text-align: end;
   position: relative;
   font-weight: 100;
@@ -46,17 +47,15 @@
   gap: 1rem;
   z-index: 50;
   padding: 0.5rem 1rem;
-  animation: infiniteSlide 3s linear infinite;
+  animation: infiniteSlide 5s linear infinite;
 }
-.floatingBox time {
+.currency-box__time {
   min-width: min-content;
   max-width: min-content;
   font-size: 12px;
 }
-.floatingBox p {
-  font-size: 16px;
-}
-.floatingBox .percentageChange {
+
+.currency-box__percentage-section {
   display: flex;
 
   align-items: center;
@@ -66,33 +65,33 @@
   font-size: 20px;
   margin: 0 0;
 }
-.floatingBox .percentageChange .stateIcon {
+.currency-box__icon {
   position: relative;
   width: 14px;
   height: 8px;
   margin-top: 2px;
 }
-.floatingBox .percentageChange p {
+.currency-box__percentage {
   margin: 0;
   letter-spacing: 1px;
   font-weight: 500;
 }
-.floatingBox b {
+.currency-box__equal {
   margin: 0 5px;
 }
 @media (min-width: 600px) {
-  .floatingBox {
+  .currency-box {
     margin: initial;
     animation: infiniteSlide 6s linear infinite;
   }
 }
 @media (min-width: 1024px) {
-  .floatingBox {
+  .currency-box {
     background: rgba(0, 0, 0, 0.852);
     animation: bounce 8s ease-in-out 0.6s infinite;
   }
 
-  .floatingBox b {
+  .currency-box__equal {
     display: block;
     line-height: 0.8;
   }

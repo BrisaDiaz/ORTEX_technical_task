@@ -11,19 +11,17 @@
   transition: all 0.5s ease-in-out;
 }
 
-.openModal {
+.modal--open {
   top: 0;
 }
-.modal article {
-  box-shadow: var(--box-shadow);
-}
-.modalHeader {
+
+.modal__header {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
   background-color: var(--bg-light);
   padding: 20px 15px;
 }
-.closeBtn {
+.modal__close-btn {
   position: relative;
   float: right;
   width: 20px;
@@ -33,11 +31,11 @@
   right: -5px;
   transition: all 0.3s ease-in-out;
 }
-.closeBtn:focus-within,
-.closeBtn:hover {
+.modal__close-btn:focus-within,
+.modal__close-btn:hover {
   transform: scale(1.2);
 }
-.closeBtn button {
+.modal__close-btn button {
   position: absolute;
   border-radius: 50%;
   width: 100%;
@@ -48,13 +46,13 @@
   border: transparent;
 }
 
-.closeBtn button:focus {
+.modal__close-btn button:focus {
   outline-offset: 3px;
   outline-color: var(--secondary-light);
 }
-.contentWrapper {
+.modal__inner {
   width: 100%;
-
+  box-shadow: var(--box-shadow);
   max-width: max-content;
   height: max-content;
   position: absolute;

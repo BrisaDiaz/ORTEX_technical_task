@@ -12,23 +12,23 @@
   position: relative;
   bottom: 0;
 }
-.form section {
+.form__content {
   width: 100%;
 
   max-width: 350px;
   margin: 0 auto;
   text-align: center;
 }
-.form .logo {
+.form__logo {
   position: relative;
   width: 100px;
   height: 66px;
   margin: 0 auto 40px;
 }
-.form button {
+.form__button {
   margin: 20px auto;
 }
-.form p {
+.form__text {
   font-family: Raleway;
   font-style: normal;
   text-orientation: none;
@@ -43,7 +43,7 @@
     min-height: 100vh;
     justify-content: center;
   }
-  .form .logo {
+  .form__logo {
     width: 170px;
     height: 100px;
   }

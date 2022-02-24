@@ -26,7 +26,7 @@ export default function ResetPasswordModal({
   return (
     <Modal aria-hidden={!isOpen} isOpen={isOpen} onClose={onClose}>
       <form className={styles.content} name="reset password" onSubmit={handleSubmit}>
-        <h2>Reset Your Password</h2>
+        <h2 className={styles["content__title"]}>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 
         <Input
@@ -52,7 +52,7 @@ export default function ResetPasswordModal({
             }),
           }}
         />
-        <Button text="Submit" />
+        <Button className={styles["contact__button"]} text="Submit" />
       </form>
     </Modal>
   );
