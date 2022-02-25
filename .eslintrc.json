@@ -1,8 +1,9 @@
 {
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "cypress",
-    "@typescript-eslint",
     "jest-dom",
+    "@typescript-eslint",
     "testing-library",
     "prettier"
   ],
@@ -10,9 +11,9 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:testing-library/react",
+    "plugin:@typescript-eslint/recommended",
     "plugin:jest-dom/recommended",
     "plugin:cypress/recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
   "globals": {
@@ -31,6 +32,7 @@
 
   "overrides": [
     // Only uses Testing Library lint rules in test files
+
     {
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
