@@ -1,6 +1,6 @@
 import React from "react";
-import { expect } from "@jest/globals";
-import { render, screen } from "@testing-library/react";
+import {expect} from "@jest/globals";
+import {render, screen} from "@testing-library/react";
 
 import Component from "./index";
 const secondaryColor = "#ea4a48",
@@ -52,7 +52,7 @@ it("render info with primary color and to top triangle if exchange estate is hig
 });
 it("renders anything if no data is provided", () => {
   const data = null;
-  const { container } = render(<Component data={data} />);
+  const {container} = render(<Component data={data} />);
 
   expect(container.childNodes.length).toBe(0);
 });

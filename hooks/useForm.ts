@@ -129,13 +129,13 @@ export default function useForm({
       fieldErrors.push(validations.max?.message as string);
     } else if (
       validations.minLength &&
-      value.length > validations.minLength.value
+      value.length < validations.minLength.value
     ) {
       setError(fieldName, validations.minLength.message as string);
       fieldErrors.push(validations.minLength?.message as string);
     } else if (
       validations.maxLength &&
-      value.length < validations.maxLength.value
+      value.length > validations.maxLength.value
     ) {
       setError(fieldName, validations.maxLength.message as string);
       fieldErrors.push(validations.maxLength?.message as string);
