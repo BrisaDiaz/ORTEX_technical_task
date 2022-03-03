@@ -17,12 +17,14 @@ export default function Modal({
   role?: string;
 }) {
   const [isInteracting, setisInteracting] = React.useState<boolean>(false);
-  const modalRef = React.useRef(null) as React.LegacyRef<HTMLElement> | undefined;
+  const modalRef = React.useRef(null) as
+    | React.LegacyRef<HTMLElement>
+    | undefined;
   const handleModalInteraction = () => {
     if (isInteracting) return;
     onClose();
   };
-  const {tabIndex} = useModalFocus({
+  const { tabIndex } = useModalFocus({
     isOpen,
     onEscape: onClose,
     ref: modalRef,
@@ -32,7 +34,7 @@ export default function Modal({
     <aside
       ref={modalRef}
       aria-hidden={!isOpen}
-      className={`${styles.modal} ${isOpen ? styles["modal--open"] : ""}`}
+      className={`${styles.modal} ${isOpen ? "" : styles["modal--close"]}`}
       role={role || "dialog"}
       tabIndex={tabIndex}
       onClick={() => handleModalInteraction()}
@@ -46,7 +48,12 @@ export default function Modal({
         <div className={styles["modal__header"]}>
           <div className={styles["modal__close-btn"]}>
             <button aria-label="close" name="close" onClick={onClose} />
-            <Image alt="" layout="fill" objectFit="contain" src="/icons/close-x.svg" />
+            <Image
+              alt=""
+              layout="fill"
+              objectFit="contain"
+              src="/icons/close-x.svg"
+            />
           </div>
         </div>
         {children}

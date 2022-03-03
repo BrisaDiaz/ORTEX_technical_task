@@ -65,7 +65,7 @@ Start the server
 
 ## ✨ Features
 
-- Lighthouse github pipeline.
+- Lighthouse pipeline.
 - Integration tests pipeline.
 - Unit tests pipeline.
 - Customizable form with validation.
