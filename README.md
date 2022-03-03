@@ -82,7 +82,7 @@ Start the server
 ├── lighthouserc.js (lighthous config)  
 ├── cypress (integration tests)  
 ├── hooks (custom hooks)  
-├── styles (pages level styles)  
+├── styles (page level styles)  
 ├── public (static assets)  
 ├── mappers (data mappers)  
 ├── .github (workflows)  
