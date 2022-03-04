@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "test": "jest ",
+    "test": "jest --watch ",
     "test:ci": "jest --ci",
     "cypress:open": "cypress open",
     "integration": "cypress run"

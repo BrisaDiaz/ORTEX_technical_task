@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+process.env.TZ = "UTC";
 import { expect } from "@jest/globals";
 import mapCurrencyExchange from "./mapCurrencyExchange";
 
@@ -37,6 +38,7 @@ describe("should return the correct format when needed data is provided ", () =>
       },
       lastUpdate: new Date(message.dt).toLocaleString(),
     };
+
     expect(mapCurrencyExchange(message)).toEqual(expectResult);
   });
   it("return hight state when exchange rate has increase", () => {
@@ -69,8 +71,9 @@ describe("should return the correct format when needed data is provided ", () =>
         currency: "USD",
         name: "United States Dollar",
       },
-      lastUpdate: "22/2/2022 21:52:24",
+      lastUpdate: new Date(message.dt).toLocaleString(),
     };
+
     expect(mapCurrencyExchange(message)).toEqual(expectResult);
   });
 });
