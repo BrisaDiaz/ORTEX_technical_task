@@ -23,6 +23,7 @@ const customJestConfig = {
     "^@/__mocks__/(.*)$": "<rootDir>/__mocks__/$1",
   },
   moduleDirectories: ["node_modules", "<rootDir>/"],
+  testPathIgnorePatterns: ["**/?(*.)+(spec).[jt]s?(x)"],
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   verbose: true,
