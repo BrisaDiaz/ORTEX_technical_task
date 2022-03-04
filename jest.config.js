@@ -23,7 +23,7 @@ const customJestConfig = {
     "^@/__mocks__/(.*)$": "<rootDir>/__mocks__/$1",
   },
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  testPathIgnorePatterns: ["**/cypress/**"],
+  testPathIgnorePatterns: ["/cypress"],
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   verbose: true,
