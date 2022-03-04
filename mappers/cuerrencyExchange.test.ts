@@ -35,7 +35,7 @@ describe("should return the correct format when needed data is provided ", () =>
         currency: "USD",
         name: "United States Dollar",
       },
-      lastUpdate: "21/2/2022 19:57:03",
+      lastUpdate: new Date(message.dt).toLocaleString(),
     };
     expect(mapCurrencyExchange(message)).toEqual(expectResult);
   });
