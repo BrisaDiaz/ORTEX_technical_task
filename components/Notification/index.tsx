@@ -1,6 +1,5 @@
-import Modal from "../Modal";
+import Modal from "../Dialog";
 
-import styles from "./index.module.css";
 export default function PopNotification({
   title,
   message,
@@ -13,11 +12,29 @@ export default function PopNotification({
   message?: string;
 }) {
   return (
-    <Modal isOpen={isOpen} role="alert" onClose={onClose}>
-      <div className={styles.notification} test-id="notification">
-        <h2 className={styles["notification__title"]}>{title}</h2>
+    <Modal AriaLabel="notification" isOpen={isOpen} role="alert" onClose={onClose}>
+      <div className="notification" test-id="notification">
+        <h2 className={"notification__title"}>{title}</h2>
         {message && <p>{message}</p>}
       </div>
+      <style>{`
+      .notification {
+  text-align: center;
+
+  width: 100%;
+  padding: 20px;
+}
+.notification__title {
+  margin-top: 0;
+}
+@media (min-width: 700px) {
+  .notification {
+    text-align: center;
+    max-width: 500px;
+    padding: 30px;
+  }
+}
+`}</style>
     </Modal>
   );
 }

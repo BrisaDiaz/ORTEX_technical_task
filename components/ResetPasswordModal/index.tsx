@@ -1,14 +1,11 @@
 import React from "react";
-import Image from "next/image";
 
-import {EMAIL_PATTERN} from "@/utils/regex";
-import useForm from "@/hooks/useForm";
-
-import Modal from "../Modal";
+import {EMAIL_PATTERN} from "../../utils/regex";
+import useForm from "../../hooks/useForm";
+import Modal from "../Dialog";
 import Input from "../Input";
 import Button from "../Button";
-
-import styles from "./index.module.css";
+import EmailIcon from "../SVG/Email";
 
 export default function ResetPasswordModal({
   onSubmit,
@@ -24,15 +21,24 @@ export default function ResetPasswordModal({
   });
 
   return (
-    <Modal aria-hidden={!isOpen} isOpen={isOpen} onClose={onClose}>
-      <form className={styles.content} name="reset password" onSubmit={handleSubmit}>
-        <h2 className={styles["content__title"]}>Reset Your Password</h2>
+    <Modal
+      AriaLabel="reset password dialog"
+      aria-hidden={!isOpen}
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <form className={"content"} name="reset password" onSubmit={handleSubmit}>
+        <h2 className={"content__title"}>Reset Your Password</h2>
         <p>Enter your email address to get reset instructions sent to you.</p>
 
         <Input
-          alertProps={{id: "email-address-error"}}
           errors={errors["emailAddress"]}
-          icon={<Image alt="email" layout="fill" objectFit="contain" src="/icons/mail.svg" />}
+          fullWidth={true}
+          icon={
+            <EmailIcon
+              color={errors["emailAddress"]?.length ? "var(--secondary)" : "var(--primary)"}
+            />
+          }
           inputProps={{
             placeholder: "Email Address*",
             id: "emailAddress",
@@ -40,9 +46,8 @@ export default function ResetPasswordModal({
             "aria-label": "email address",
             "aria-required": true,
             autoFocus: true,
-            autoComplete: "emailAddress",
-            "aria-invalid": errors["emailAddress"]?.length ? true : false,
-            "aria-describedby": "email-address-error",
+            autoComplete: "email",
+
             ...register("emailAddress", {
               pattern: {
                 value: EMAIL_PATTERN,
@@ -52,8 +57,39 @@ export default function ResetPasswordModal({
             }),
           }}
         />
-        <Button className={styles["contact__button"]} text="Submit" />
+        <Button
+          className={"contact__button"}
+          fullWidth={true}
+          size="large"
+          text="Submit"
+          type="secondary"
+        />
       </form>
+      <style>
+        ´
+        {`
+      .content {
+  text-align: center;
+
+  width: 100%;
+  padding: 20px;
+}
+.content__title {
+  margin-top: 0;
+}
+.content__button {
+  margin: 10px auto;
+}
+@media (min-width: 700px) {
+  .content {
+    text-align: center;
+    max-width: 500px;
+    padding: 30px;
+  }
+}
+
+      `}
+      </style>
     </Modal>
   );
 }

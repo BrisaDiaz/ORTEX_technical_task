@@ -1,12 +1,11 @@
 import Image from "next/image";
 
-import {EMAIL_PATTERN, PASSWORD_PATTERN} from "@/utils/regex";
-import useForm from "@/hooks/useForm";
-
+import {EMAIL_PATTERN, PASSWORD_PATTERN} from "../../utils/regex";
+import useForm from "../../hooks/useForm";
+import EmailIcon from "../SVG/Email";
+import LockedIcon from "../SVG/Locked";
 import Input from "../Input/index";
 import Button from "../Button/index";
-
-import styles from "./index.module.css";
 
 export default function LoginForm({
   onForgotPassword,
@@ -20,8 +19,8 @@ export default function LoginForm({
   });
 
   return (
-    <form className={styles.form} name="login" onSubmit={handleSubmit}>
-      <div className={styles["form__logo"]}>
+    <form className={"form"} name="login" onSubmit={handleSubmit}>
+      <div className={"form__logo"}>
         <Image
           alt="ORTEX"
           blurDataURL="/ORTEX_logo.webp"
@@ -31,19 +30,11 @@ export default function LoginForm({
           src="/ORTEX_logo.webp"
         />
       </div>
-      <section className={styles["form__content"]}>
+      <section className={"form__content"}>
         <Input
-          alertProps={{id: "email-error"}}
           errors={errors["email"]}
-          icon={
-            <Image
-              alt="email"
-              layout="fill"
-              loading="eager"
-              objectFit="contain"
-              src="/icons/mail.svg"
-            />
-          }
+          fullWidth={true}
+          icon={<EmailIcon color={errors["email"] ? "var(--secondary)" : "var(--primary)"} />}
           inputProps={{
             placeholder: "Email*",
             id: "email",
@@ -52,8 +43,7 @@ export default function LoginForm({
             "aria-required": true,
             autoFocus: true,
             autoComplete: "email",
-            "aria-invalid": errors["email"]?.length ? true : false,
-            "aria-describedby": "email-error",
+
             ...register("email", {
               pattern: {
                 value: EMAIL_PATTERN,
@@ -64,17 +54,9 @@ export default function LoginForm({
           }}
         />
         <Input
-          alertProps={{id: "password-error"}}
           errors={errors["password"]}
-          icon={
-            <Image
-              alt="password"
-              layout="fill"
-              loading="eager"
-              objectFit="contain"
-              src="/icons/password.svg"
-            />
-          }
+          fullWidth={true}
+          icon={<LockedIcon color={errors["password"] ? "var(--secondary)" : "var(--primary)"} />}
           inputProps={{
             placeholder: "Password*",
             id: "password",
@@ -82,22 +64,27 @@ export default function LoginForm({
 
             "aria-label": "password",
             "aria-required": true,
-            autoComplete: "password",
-            "aria-invalid": errors["password"]?.length ? true : false,
-            "aria-describedby": "password-error",
+            autoComplete: "current-password",
+
             ...register("password", {
               pattern: {
                 value: PASSWORD_PATTERN,
-                message: "Insecure password. Example: MyLongP@ssword8",
+                message: "Insecure password. Exp: MyLongP@ssword8",
               },
               required: "Password is required",
             }),
           }}
         />
-        <Button className={styles["form__button"]} text="Login" />
+        <Button
+          className={"form__button"}
+          fullWidth={true}
+          size="large"
+          text="Login"
+          type="secondary"
+        />
         <p
           aria-label="open reset password form"
-          className={styles["form__text"]}
+          className={"form__text"}
           tabIndex={0}
           onClick={onForgotPassword}
           onKeyDown={(e) => e.key === "Enter" && onForgotPassword()}
@@ -105,6 +92,58 @@ export default function LoginForm({
           Forgot your password?
         </p>
       </section>
+      <style>{`
+      .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-light);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: var(--box-shadow);
+  padding: 40px 24px 15px;
+
+  position: relative;
+  bottom: 0;
+}
+.form__content {
+  width: 100%;
+
+  max-width: 350px;
+  margin: 0 auto;
+  text-align: center;
+}
+.form__logo {
+  position: relative;
+  width: 100px;
+  height: 66px;
+  margin: 0 auto 40px;
+}
+.form__button {
+  margin: 20px auto;
+}
+.form__text {
+  font-family: Raleway;
+  font-style: normal;
+  text-orientation: none;
+  font-weight: normal;
+  line-height: 19px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+@media (min-width: 700px) {
+  .form {
+    border-radius: 0;
+    min-height: 100vh;
+    justify-content: center;
+  }
+  .form__logo {
+    width: 170px;
+    height: 100px;
+  }
+}
+`}</style>
     </form>
   );
 }

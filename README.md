@@ -62,6 +62,7 @@ Start the server
 - Cypress
 - Jest
 - React Testing library
+- Storybook
 
 ## ✨ Features
 
@@ -69,7 +70,7 @@ Start the server
 - Integration tests pipeline.
 - Unit tests pipeline.
 - Customizable form with validation.
-- Accessible components.
+- Accessible documented components.
 - Push notification.
 - Loading indicators.
 - Websocket connection.
@@ -77,7 +78,7 @@ Start the server
 ## 📂 Folder structure
 
 .  
-├── components (components folder)  
+├── components (components/stories folder)  
 ├── interfaces.ts (common typescript interfaces)  
 ├── lighthouserc.js (lighthous config)  
 ├── cypress (integration tests)  
