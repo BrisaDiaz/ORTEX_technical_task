@@ -19,7 +19,7 @@ export default function Modal({
   AriaLabel: string;
 }) {
   const [isInteracting, setisInteracting] = React.useState<boolean>(false);
-  const dialogRef = React.useRef(null) as React.LegacyRef<HTMLElement>;
+  const dialogRef: React.LegacyRef<HTMLDivElement> | undefined = React.useRef(null);
   const handleModalInteraction = () => {
     if (isInteracting) return;
     onClose();
