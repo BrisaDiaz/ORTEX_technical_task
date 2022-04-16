@@ -1,4 +1,4 @@
-export default function XIcon(params: type) {
+export default function XIcon() {
   return (
     <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
       <g opacity="0.7">
