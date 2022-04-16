@@ -28,9 +28,9 @@ it("is hidden when modal is close", () => {
     </Component>,
   );
 
-  const modal = screen.getByText("Modal title")?.parentNode?.parentNode;
+  const modal = screen.getByTestId("dialog");
 
-  expect(modal).toHaveStyle("top:", "-100%");
+  expect(modal).toHaveStyle("top: -100%;");
 });
 it("trigger close when clicking close button", () => {
   render(

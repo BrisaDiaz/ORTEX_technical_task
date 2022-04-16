@@ -1,6 +1,6 @@
 import React from "react";
-import {expect} from "@jest/globals";
-import {render, screen, cleanup} from "@testing-library/react";
+import { expect } from "@jest/globals";
+import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Component from "./index";
@@ -16,7 +16,7 @@ afterEach(() => {
 it("displays errors messages and avoid submit when setting incorrect inputs values", async () => {
   render(<Component {...props} />);
 
-  const emailInput = screen.getByPlaceholderText("email*", {exact: false});
+  const emailInput = screen.getByPlaceholderText("email*", { exact: false });
   const passwordInput = screen.getByPlaceholderText("password*", {
     exact: false,
   });
@@ -25,17 +25,17 @@ it("displays errors messages and avoid submit when setting incorrect inputs valu
   userEvent.type(passwordInput, "insecurePassword");
   userEvent.click(screen.getByRole("button"));
   expect(props.onSubmit.mock.calls.length).toBe(0);
-  expect(screen.getByText("Please insert a valid email", {exact: false}));
+  expect(screen.getByText("Please insert a valid email", { exact: false }));
   expect(
-    screen.getByText("Insecure password. Example: MyLongP@ssword8", {
+    screen.getByText("Insecure password. Exp: MyLongP@ssword8", {
       exact: false,
-    }),
+    })
   );
 });
 it("displays errors messages and avoid submit when not skipping any required field", async () => {
   render(<Component {...props} />);
 
-  const emailInput = screen.getByPlaceholderText("email*", {exact: false});
+  const emailInput = screen.getByPlaceholderText("email*", { exact: false });
   const passwordInput = screen.getByPlaceholderText("password*", {
     exact: false,
   });
@@ -47,7 +47,7 @@ it("displays errors messages and avoid submit when not skipping any required fie
   expect(
     screen.getByText("Password is required", {
       exact: false,
-    }),
+    })
   );
 
   userEvent.clear(emailInput);
@@ -57,14 +57,14 @@ it("displays errors messages and avoid submit when not skipping any required fie
   expect(
     screen.getByText("Email is required", {
       exact: false,
-    }),
+    })
   );
   expect(props.onSubmit.mock.calls.length).toBe(0);
 });
 it("submits when setting corrects values", async () => {
   render(<Component {...props} />);
 
-  const emailInput = screen.getByPlaceholderText("email*", {exact: false});
+  const emailInput = screen.getByPlaceholderText("email*", { exact: false });
   const passwordInput = screen.getByPlaceholderText("password*", {
     exact: false,
   });
@@ -91,7 +91,7 @@ it("triggers onForgotPassword callback when being in focus and  pressing enter "
   render(<Component {...props} />);
   const forgetPasswordTrigger = screen.getByText("Forgot your password?");
 
-  userEvent.tab(forgetPasswordTrigger);
+  userEvent.tab(forgetPasswordTrigger as any);
 
   expect(props.onForgotPassword.mock.calls.length).toBe(1);
 });

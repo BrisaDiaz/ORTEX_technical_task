@@ -32,6 +32,7 @@ export default function Modal({
 
   return (
     <div
+      data-testid="dialog"
       ref={dialogRef}
       aria-hidden={!isOpen}
       aria-label={AriaLabel}
