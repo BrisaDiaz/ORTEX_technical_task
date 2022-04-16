@@ -42,7 +42,7 @@ export default function useModalFocus({
     document.addEventListener("keydown", function (e) {
       e.key === "Escape" && onEscape && onEscape();
 
-      let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+      const isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
       if (!isTabPressed) {
         return;
