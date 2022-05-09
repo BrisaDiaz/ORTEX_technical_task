@@ -14,7 +14,7 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
            - name: Cancel Previous Redundant Builds
-             uses: styfle/cancel-workflow-action@0.9.1
+           - uses: styfle/cancel-workflow-action@0.9.1
              with:
                access_token: ${{ github.token }}
 
@@ -25,11 +25,11 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
            - name: Checkout
-             uses: actions/checkout@v2
+           - uses: actions/checkout@v2
              with:
               fetch-depth: 0
            - name: Setup node 
-             uses: actions/setup-node@v2
+           - uses: actions/setup-node@v2
              with:
               node-version: ${{ matrix.node-version }}
               cache: npm 
@@ -43,11 +43,11 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
           - name: Checkout
-            uses: actions/checkout@v2
+          - uses: actions/checkout@v2
             with:
              fetch-depth: 0
           - name: Setup node 
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
              node-version: ${{ matrix.node-version }}
              cache: npm 
@@ -55,7 +55,7 @@ jobs:
             run: npm ci
           - name: Build 
             run: npm run build
-            uses: actions/upload-artifact@v2
+          - uses: actions/upload-artifact@v2
             with:
               name: .next
               path: .next
@@ -67,17 +67,17 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
           - name: Checkout
-            uses: actions/checkout@v2
+          - uses: actions/checkout@v2
             with:
              fetch-depth: 0
           - name: Setup node 
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
              node-version: ${{ matrix.node-version }}
              cache: npm 
           - name : Install dependencies
             run: npm ci
-            uses: actions/download-artifact@v2
+          - uses: actions/download-artifact@v2
             with:
               name: .next
               path: .next
@@ -92,22 +92,22 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
           - name: Checkout
-            uses: actions/checkout@v2
+          - uses: actions/checkout@v2
             with:
              fetch-depth: 0
           - name: Setup node 
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
              node-version: ${{ matrix.node-version }}
              cache: npm 
           - name : Install dependencies
             run: npm ci
-            uses: actions/download-artifact@v2
+          - uses: actions/download-artifact@v2
             with:
               name: .next
               path: .next
           - name: E2E tests
-            uses: cypress-io/github-action@v2
+          - uses: cypress-io/github-action@v2
             with: 
               command: npm run integration
               start: npm start
@@ -121,17 +121,17 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
           - name: Checkout
-            uses: actions/checkout@v2
+          - uses: actions/checkout@v2
             with:
              fetch-depth: 0
           - name: Setup node 
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
              node-version: ${{ matrix.node-version }}
              cache: npm 
           - name : Install dependencies
             run: npm ci
-            uses: actions/download-artifact@v2
+          - uses: actions/download-artifact@v2
             with:
               name: .next
               path: .next
@@ -150,22 +150,22 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
           - name: Checkout
-            uses: actions/checkout@v2
+          - uses: actions/checkout@v2
             with:
              fetch-depth: 0
           - name: Setup node 
-            uses: actions/setup-node@v2
+          - uses: actions/setup-node@v2
             with:
              node-version: ${{ matrix.node-version }}
              cache: npm 
           - name : Install dependencies
             run: npm ci
-            uses: actions/download-artifact@v2
+          - uses: actions/download-artifact@v2
             with:
               name: .next
               path: .next
           - name: Deploy 4
-            uses: amondnet/vercel-action@v20 
+          - uses: amondnet/vercel-action@v20 
             with:
                vercel-token: ${{ secrets.VERCEL_TOKEN }} 
                github-token: ${{ github.token }} 
