@@ -4,9 +4,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+    types: [opened, synchronize]
 jobs:
+
   redundancy:
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-18.04
       strategy:
        matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -15,8 +17,9 @@ jobs:
           uses: styfle/cancel-workflow-action@0.9.1
           with:
             access_token: ${{ github.token }}
+
   lint: 
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -34,8 +37,7 @@ jobs:
           run: npm run lint
            
   build: 
-     needs: [lint]
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -59,7 +61,7 @@ jobs:
             path: .next
   tests: 
      needs: [lint,build]
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -84,7 +86,7 @@ jobs:
 
   e2e: 
      needs: [lint,build]
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -113,7 +115,7 @@ jobs:
 
   lighthouse: 
      needs: [lint,build]
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -142,7 +144,7 @@ jobs:
 
   deploy: 
      needs: [tests,e2e,lighthouse]
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-18.04
      strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -162,8 +164,7 @@ jobs:
           with:
             name: .next
             path: .next
-        - name: Deploy 
-          needs: [tes]
+        - name: Deploy 4
           uses: amondnet/vercel-action@v20 
           with:
              vercel-token: ${{ secrets.VERCEL_TOKEN }} 
