@@ -13,10 +13,10 @@ jobs:
        matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: cancel previous redundant build
-          uses: styfle/cancel-workflow-action@0.9.1
-          with:
-            access_token: ${{ github.token }}
+           - name: Cancel Previous Redundant Builds
+             uses: styfle/cancel-workflow-action@0.9.1
+             with:
+               access_token: ${{ github.token }}
 
   lint: 
      runs-on: ubuntu-18.04
@@ -24,17 +24,17 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name: Lint
-          run: npm run lint
+           - name: Checkout
+             uses: actions/checkout@v2
+             with:
+              fetch-depth: 0
+           - name: Setup node 
+             uses: actions/setup-node@v2
+             with:
+              node-version: ${{ matrix.node-version }}
+              cache: npm 
+           - name: Lint
+             run: npm run lint
            
   build: 
      runs-on: ubuntu-18.04
@@ -42,23 +42,23 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name : Install dependencies
-          run: npm ci
-        - name: Build 
-          run: npm run build
-          uses: actions/upload-artifact@v2
-          with:
-            name: .next
-            path: .next
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+             fetch-depth: 0
+          - name: Setup node 
+            uses: actions/setup-node@v2
+            with:
+             node-version: ${{ matrix.node-version }}
+             cache: npm 
+          - name : Install dependencies
+            run: npm ci
+          - name: Build 
+            run: npm run build
+            uses: actions/upload-artifact@v2
+            with:
+              name: .next
+              path: .next
   tests: 
      needs: [lint,build]
      runs-on: ubuntu-18.04
@@ -66,23 +66,23 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name : Install dependencies
-          run: npm ci
-          uses: actions/download-artifact@v2
-          with:
-            name: .next
-            path: .next
-        - name: Tests
-          run: npm run test
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+             fetch-depth: 0
+          - name: Setup node 
+            uses: actions/setup-node@v2
+            with:
+             node-version: ${{ matrix.node-version }}
+             cache: npm 
+          - name : Install dependencies
+            run: npm ci
+            uses: actions/download-artifact@v2
+            with:
+              name: .next
+              path: .next
+          - name: Tests
+            run: npm run test
 
   e2e: 
      needs: [lint,build]
@@ -91,27 +91,27 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name : Install dependencies
-          run: npm ci
-          uses: actions/download-artifact@v2
-          with:
-            name: .next
-            path: .next
-        - name: E2E tests
-          uses: cypress-io/github-action@v2
-          with: 
-            command: npm run integration
-            start: npm start
-            wait-on: http://localhost:3000
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+             fetch-depth: 0
+          - name: Setup node 
+            uses: actions/setup-node@v2
+            with:
+             node-version: ${{ matrix.node-version }}
+             cache: npm 
+          - name : Install dependencies
+            run: npm ci
+            uses: actions/download-artifact@v2
+            with:
+              name: .next
+              path: .next
+          - name: E2E tests
+            uses: cypress-io/github-action@v2
+            with: 
+              command: npm run integration
+              start: npm start
+              wait-on: http://localhost:3000
 
   lighthouse: 
      needs: [lint,build]
@@ -120,27 +120,27 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name : Install dependencies
-          run: npm ci
-          uses: actions/download-artifact@v2
-          with:
-            name: .next
-            path: .next
-        - name: Lighthouse CI
-          run: |
-                npm install -g @lhci/cli@0.8.x
-                lhci autorun
-          env:
-               LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+             fetch-depth: 0
+          - name: Setup node 
+            uses: actions/setup-node@v2
+            with:
+             node-version: ${{ matrix.node-version }}
+             cache: npm 
+          - name : Install dependencies
+            run: npm ci
+            uses: actions/download-artifact@v2
+            with:
+              name: .next
+              path: .next
+          - name: Lighthouse CI
+            run: |
+                  npm install -g @lhci/cli@0.8.x
+                  lhci autorun
+            env:
+                 LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   deploy: 
      needs: [tests,e2e,lighthouse]
@@ -149,27 +149,27 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-          with:
-           fetch-depth: 0
-        - name: Setup node 
-          uses: actions/setup-node@v2
-          with:
-           node-version: ${{ matrix.node-version }}
-           cache: npm 
-        - name : Install dependencies
-          run: npm ci
-          uses: actions/download-artifact@v2
-          with:
-            name: .next
-            path: .next
-        - name: Deploy 4
-          uses: amondnet/vercel-action@v20 
-          with:
-             vercel-token: ${{ secrets.VERCEL_TOKEN }} 
-             github-token: ${{ github.token }} 
-             vercel-args: '--prod' 
-             vercel-org-id: ${{ secrets.ORG_ID}}  
-             vercel-project-id: ${{ secrets.PROJECT_ID}} 
-             working-directory: ./
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+             fetch-depth: 0
+          - name: Setup node 
+            uses: actions/setup-node@v2
+            with:
+             node-version: ${{ matrix.node-version }}
+             cache: npm 
+          - name : Install dependencies
+            run: npm ci
+            uses: actions/download-artifact@v2
+            with:
+              name: .next
+              path: .next
+          - name: Deploy 4
+            uses: amondnet/vercel-action@v20 
+            with:
+               vercel-token: ${{ secrets.VERCEL_TOKEN }} 
+               github-token: ${{ github.token }} 
+               vercel-args: '--prod' 
+               vercel-org-id: ${{ secrets.ORG_ID}}  
+               vercel-project-id: ${{ secrets.PROJECT_ID}} 
+               working-directory: ./
