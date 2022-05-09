@@ -14,7 +14,7 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
         steps:
            - name: Cancel Previous Redundant Builds
-           - uses: styfle/cancel-workflow-action@0.9.1
+             uses: styfle/cancel-workflow-action@0.9.1
              with:
                access_token: ${{ github.token }}
 
@@ -107,7 +107,7 @@ jobs:
               name: .next
               path: .next
           - name: E2E tests
-          - uses: cypress-io/github-action@v2
+            uses: cypress-io/github-action@v2
             with: 
               command: npm run integration
               start: npm start
